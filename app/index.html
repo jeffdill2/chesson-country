@@ -98,7 +98,56 @@
     </div>
   </div>
 
+  <!-- - - - - - -
+  |      TEMPLATES
+  - - - - - - - -->
+  <script type="text/template" id="home-view-template">
+    <div class="jumbotron">
+      <h1>Welcome!</h1>
+
+      <br/>
+
+      <p class="lead">
+        Thanks for visiting <span style="font-family: 'Lobster'; font-size: 28px; color: #777;">Chesson Country</span>! Please enjoy
+        browsing the inventory of unique, vintage, and antique items that we have for sale. We&#8217;d also love to meet you
+        in person at our product showroom at
+        <a target="_blank" href="//www.facebook.com/pages/Southern-Estates-Antiques-Inc/113845738669203">
+          Southern Estates Antiques.
+        </a>
+      </p>
+
+      <br/>
+
+      <h2>
+        415 Mauldin Road<br/>
+        Greenville, SC 29605
+      </h2>
+      <!-- //<p><a class="btn btn-lg btn-success" href="#">Splendid! <span class="glyphicon glyphicon-ok"></span></a></p> -->
+    </div>
+
+    <div class="featured-banner" id="featured-items">
+      <h2>Featured Items</h2>
+    </div>
+
+    <div class="row">
+      <% items.forEach(function(item) { %>
+        <div class="featured-item col-md-6">
+          <div class="feature-name">
+            <h3><%= item.attributes.name %></h3>
+          </div>
+
+          <div class="feature-image">
+            <img src="<%= item.attributes.image._url %>">
+          </div>
+
+          <div class="feature-description">
+            <p><%= item.attributes.description %></p>
+          </div>
         </div>
+      <% }); %>
+    </div>
+  </script>
+
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <!-- build:js scripts/vendor.js -->
@@ -138,6 +187,9 @@
   <!-- endbuild -->
 
   <!-- build:js({app,.tmp}) scripts/main.js -->
+  <script src="scripts/home-view.js"></script>
+  <script src="scripts/product.js"></script>
+  <script src="scripts/item.js"></script>
   <script src="scripts/router.js"></script>
   <script src="scripts/main.js"></script>
   <!-- endbuild -->
