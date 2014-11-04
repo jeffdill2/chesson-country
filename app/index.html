@@ -148,6 +148,12 @@
     </div>
   </script>
 
+  <script type="text/template" id="login-view-template">
+    <input id="username-input-box" placeholder="Username">
+    <input id="password-input-box" placeholder="Password" type="password">
+    <button class="button" id="login-button" >Sign In</button>
+  </script>
+
   <script type="text/template" id="admin-view-template">
     <p>ADMIN VIEW</p>
   </script>
@@ -192,6 +198,7 @@
 
   <!-- build:js({app,.tmp}) scripts/main.js -->
   <script src="scripts/admin-view.js"></script>
+  <script src="scripts/login-view.js"></script>
   <script src="scripts/home-view.js"></script>
   <script src="scripts/product.js"></script>
   <script src="scripts/item.js"></script>
