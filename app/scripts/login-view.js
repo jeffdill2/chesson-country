@@ -23,20 +23,17 @@ var LoginView = Parse.View.extend({
 		var username = $('#username-input-box').val();
 		var password = $('#password-input-box').val();
 
-		if (username.length > 0 && password.length > 0 && Parse.User.current() === null) {
+		if (username.length > 0 && password.length > 0) {
 			Parse.User.logIn(username, password, {
 				success: function() {
-					console.log('SUCCESS');
 					router.navigate('/#admin');
 				},
 				error: function(error) {
-					console.log('ERROR:', error);
-					// USERNAME OR PASSWORD INCORRECT SWEET ALERT HERE!!!
+					sweetAlert('Oops!', 'Looks like you\'ve entered the wrong username or password.', 'error');
 				}
 			});
 		} else {
-			console.log('ENTER A USERNAME AND PASSWORD');
-			// ENTER A USERNAME AND PASSWORD SWEET ALERT HERE!!!
+			sweetAlert('Oops!', 'Looks like you forgot to enter a username and password.', 'error');
 		}
 	}
 });
