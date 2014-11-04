@@ -16,7 +16,7 @@ Parse.history.start();
 // ----------------------
 $(document).ready(function() {
 	$('#header-login-button').on('click', function() {
-		if (Parse.User.current) {
+		if (Parse.User.current()) {
 			router.navigate('/#admin');
 		} else {
 			router.navigate('/#login');
