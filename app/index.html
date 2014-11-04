@@ -55,13 +55,13 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">PRODUCTS<span class="caret"></span></a>
 
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#">View All Products...</a></li>
+              <li><a href="/#products">View All Products...</a></li>
               <li class="divider"></li>
               <li><a href="#">Furniture</a></li>
               <li><a href="#">Toys</a></li>
               <li><a href="#">Houseware</a></li>
               <li><a href="#">Collectibles</a></li>
-              <li><a href="#">...and more!</a></li>
+              <li><a href="/#products">...and more!</a></li>
             </ul>
           </li>
 
@@ -159,6 +159,22 @@
     <p>ADMIN VIEW</p>
   </script>
 
+  <script type="text/template" id="products-view-template">
+    <div class="row">
+      <% products.forEach(function(product) { %>
+        <div class="products-box col-md-6">
+          <div class="products-name">
+            <h3><%= product.attributes.name %></h3>
+          </div>
+
+          <div class="products-description">
+            <p><%= product.attributes.description %></p>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  </script>
+
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <!-- build:js scripts/vendor.js -->
@@ -199,6 +215,7 @@
   <!-- endbuild -->
 
   <!-- build:js({app,.tmp}) scripts/main.js -->
+  <script src="scripts/products-view.js"></script>
   <script src="scripts/admin-view.js"></script>
   <script src="scripts/login-view.js"></script>
   <script src="scripts/home-view.js"></script>
