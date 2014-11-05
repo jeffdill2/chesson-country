@@ -162,13 +162,33 @@
   <script type="text/template" id="products-view-template">
     <div class="row">
       <% products.forEach(function(product) { %>
+        <a href="/#products/<%= product.id %>">
+          <div class="product-container">
+            <div class="products-box col-md-4">
+              <div class="products-name">
+                <h3><%= product.attributes.name %></h3>
+              </div>
+
+              <div class="products-description">
+                <p><%= product.attributes.description %></p>
+              </div>
+            </div>
+          </div>
+        </a>
+      <% }); %>
+    </div>
+  </script>
+
+  <script type="text/template" id="product-view-template">
+    <div class="row">
+      <% items.forEach(function(item) { %>
         <div class="products-box col-md-6">
           <div class="products-name">
-            <h3><%= product.attributes.name %></h3>
+            <h3><%= item.attributes.name %></h3>
           </div>
 
           <div class="products-description">
-            <p><%= product.attributes.description %></p>
+            <p><%= item.attributes.description %></p>
           </div>
         </div>
       <% }); %>
@@ -215,6 +235,7 @@
   <!-- endbuild -->
 
   <!-- build:js({app,.tmp}) scripts/main.js -->
+  <script src="scripts/product-view.js"></script>
   <script src="scripts/products-view.js"></script>
   <script src="scripts/admin-view.js"></script>
   <script src="scripts/login-view.js"></script>

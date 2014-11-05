@@ -20,8 +20,7 @@ var ProductsView = Parse.View.extend({
 
 		query.find({
 			success: function(results) {
-				var products = {products: results};
-				_this.$el.html(_this.template(products));
+				_this.$el.html(_this.template({products: results}));
 			},
 			error: function(error) {
 				console.log(error);

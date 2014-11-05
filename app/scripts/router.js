@@ -39,7 +39,7 @@ var Router = Parse.Router.extend({
 	},
 
 	renderProduct: function(productId) {
-
+		this.swapView(new ProductView(productId));
 	},
 
 	renderItems: function() {

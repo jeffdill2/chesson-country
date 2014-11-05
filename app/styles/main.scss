@@ -29,6 +29,10 @@ p {
   font-family: 'Raleway', 'Helvetica', 'Arial', sans-serif;
 }
 
+a {
+  color: inherit;
+}
+
 //
 // HEADER
 // ------
@@ -131,6 +135,16 @@ p {
       margin-left: 5%;
       width: 90%;
     }
+  }
+}
+
+.product-container {
+  .products-name {
+    text-align: center;
+  }
+
+  .products-description {
+    text-align: center;
   }
 }
 
