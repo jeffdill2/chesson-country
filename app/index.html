@@ -195,6 +195,20 @@
     </div>
   </script>
 
+  <script type="text/template" id="item-view-template">
+    <div class="row">
+        <div class="item-box col-md-6">
+          <div class="item-name">
+            <h3><%= item.attributes.name %></h3>
+          </div>
+
+          <div class="item-description">
+            <p><%= item.attributes.description %></p>
+          </div>
+        </div>
+    </div>
+  </script>
+
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <!-- build:js scripts/vendor.js -->
@@ -235,6 +249,7 @@
   <!-- endbuild -->
 
   <!-- build:js({app,.tmp}) scripts/main.js -->
+  <script src="scripts/item-view.js"></script>
   <script src="scripts/product-view.js"></script>
   <script src="scripts/products-view.js"></script>
   <script src="scripts/admin-view.js"></script>
