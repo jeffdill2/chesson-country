@@ -69,13 +69,13 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">ITEMS<span class="caret"></span></a>
 
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#">View All Items...</a></li>
+              <li><a href="/#items">View All Items...</a></li>
               <li class="divider"></li>
               <li><a href="#">1938 Dining Room Table</a></li>
               <li><a href="#">1942 Floor Lamp</a></li>
               <li><a href="#">1967 Leather Ottoman</a></li>
               <li><a href="#">1954 Toy Corvette</a></li>
-              <li><a href="#">...and more!</a></li>
+              <li><a href="/#items">...and more!</a></li>
             </ul>
           </li>
         </ul>
@@ -195,6 +195,26 @@
     </div>
   </script>
 
+  <script type="text/template" id="items-view-template">
+    <div class="row">
+      <% items.forEach(function(item) { %>
+        <a href="/#items/<%= item.id %>">
+          <div class="item-container">
+            <div class="items-box col-md-4">
+              <div class="items-name">
+                <h3><%= item.attributes.name %></h3>
+              </div>
+
+              <div class="items-description">
+                <p><%= item.attributes.description %></p>
+              </div>
+            </div>
+          </div>
+        </a>
+      <% }); %>
+    </div>
+  </script>
+
   <script type="text/template" id="item-view-template">
     <div class="row">
         <div class="item-box col-md-6">
@@ -250,6 +270,7 @@
 
   <!-- build:js({app,.tmp}) scripts/main.js -->
   <script src="scripts/item-view.js"></script>
+  <script src="scripts/items-view.js"></script>
   <script src="scripts/product-view.js"></script>
   <script src="scripts/products-view.js"></script>
   <script src="scripts/admin-view.js"></script>
