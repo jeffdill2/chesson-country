@@ -49,7 +49,7 @@
     <div class="header-nav">
       <div class="container">
         <ul class="nav nav-pills pull-left">
-          <li><a href="#featured-items">FEATURED</a></li>
+          <li><a id="featured-items-link">FEATURED</a></li>
 
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">PRODUCTS<span class="caret"></span></a>
@@ -102,6 +102,8 @@
   <!-- - - - - - -
   |      TEMPLATES
   - - - - - - - -->
+
+  <!-- HOME VIEW -->
   <script type="text/template" id="home-view-template">
     <div class="jumbotron">
       <h1>Welcome!</h1>
@@ -126,7 +128,9 @@
       <!-- //<p><a class="btn btn-lg btn-success" href="#">Splendid! <span class="glyphicon glyphicon-ok"></span></a></p> -->
     </div>
 
-    <div class="featured-banner" id="featured-items">
+    <a id="featured-items"></a>
+
+    <div class="featured-banner">
       <h2>Featured Items</h2>
     </div>
 
@@ -149,16 +153,19 @@
     </div>
   </script>
 
+  <!-- LOGIN VIEW -->
   <script type="text/template" id="login-view-template">
     <input id="username-input-box" placeholder="Username">
     <input id="password-input-box" placeholder="Password" type="password">
     <button class="button" id="login-button" >Sign In</button>
   </script>
 
+  <!-- ADMIN VIEW -->
   <script type="text/template" id="admin-view-template">
     <p>ADMIN VIEW</p>
   </script>
 
+  <!-- PRODUCTS VIEW -->
   <script type="text/template" id="products-view-template">
     <div class="row">
       <% products.forEach(function(product) { %>
@@ -179,6 +186,7 @@
     </div>
   </script>
 
+  <!-- PRODUCT VIEW -->
   <script type="text/template" id="product-view-template">
     <div class="row">
       <% items.forEach(function(item) { %>
@@ -195,6 +203,7 @@
     </div>
   </script>
 
+  <!-- ITEMS VIEW -->
   <script type="text/template" id="items-view-template">
     <div class="row">
       <% items.forEach(function(item) { %>
@@ -215,6 +224,7 @@
     </div>
   </script>
 
+  <!-- ITEM VIEW -->
   <script type="text/template" id="item-view-template">
     <div class="row">
         <div class="item-box col-md-6">

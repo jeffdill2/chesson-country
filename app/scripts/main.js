@@ -15,6 +15,7 @@ Parse.history.start();
 // INITIALIZE APPLICATION
 // ----------------------
 $(document).ready(function() {
+	// LOGIN BUTTON
 	$('#header-login-button').on('click', function() {
 		if (Parse.User.current()) {
 			router.navigate('/#admin');
@@ -23,7 +24,22 @@ $(document).ready(function() {
 		}
 	});
 
+	// LOGO CLICK
 	$('.logo').on('click', function() {
 		router.navigate('/#');
+	});
+
+	// FEATURED ITEMS
+	$('#featured-items-link').click(function() {
+		if (window.location.href.replace(window.location.origin, '').length > 2) {
+			router.navigate('/#');
+		}
+
+		var interval = setInterval(function() {
+			if ($('#featured-items')) {
+				clearInterval(interval);
+				$('html, body').animate({scrollTop: $('#featured-items').offset().top - 80}, 'slow');
+			}
+		}, 100);
 	});
 });

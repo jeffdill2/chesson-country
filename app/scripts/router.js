@@ -26,10 +26,6 @@ var Router = Parse.Router.extend({
 		this.currentView = null;
 	},
 
-	loadImages: function() {
-
-	},
-
 	renderHome: function() {
 		this.swapView(new HomeView());
 	},
@@ -61,7 +57,7 @@ var Router = Parse.Router.extend({
 	swapView: function (view) {
 		if (this.currentView) {
 			this.currentView.remove();
-		};
+		}
 
 		this.currentView = view;
 	}

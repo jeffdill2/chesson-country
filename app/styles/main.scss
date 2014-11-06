@@ -113,6 +113,10 @@ a {
   }
 }
 
+#featured-items-link {
+  cursor: pointer;
+}
+
 .featured-item {
   background-color: $colorOffWhite;
   border: 1px solid $colorLightGray;
