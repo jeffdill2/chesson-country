@@ -43,9 +43,14 @@ $(document).ready(function() {
 
 		var interval = setInterval(function() {
 			if ($('#featured-items')) {
-				clearInterval(interval);
 				$('html, body').animate({scrollTop: $('#featured-items').offset().top - 80}, 'slow');
+				clearInterval(interval);
 			}
 		}, 100);
+	});
+
+	// IMAGE FILE UPLOAD
+	$(document).on('change', '#image-file-selector', function() {
+		$('#image-name').val($('#image-file-selector').val());
 	});
 });

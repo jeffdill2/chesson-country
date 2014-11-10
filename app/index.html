@@ -163,7 +163,132 @@
 
   <!-- ADMIN VIEW -->
   <script type="text/template" id="admin-view-template">
-    <p>ADMIN VIEW</p>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="section">
+            <h2>Add New Products</h2>
+            <hr/>
+
+            <div class="row">
+              <div class="col-md-12">
+                <h3 class="field-label">Product Name</h3>
+                <input id="product-name" class="input-box full-width" placeholder="Furniture">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <h3 class="field-label">Product Description</h3>
+                <textarea id="product-description" class="input-box full-width" placeholder="Chairs, tables, ottomans"></textarea>
+              </div>
+            </div>
+
+            <div class="center">
+              <button class="btn btn-success btn-lg" id="add-new-product">Add New Product</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="section">
+            <h2>Add New Items</h2>
+            <hr/>
+
+            <div class="row">
+              <div class="col-md-12">
+                <h3 class="field-label">Item Name</h3>
+                <input id="item-name" class="input-box full-width" placeholder="Eames Swivel Chair">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <h3 class="field-label">Item Description</h3>
+                <textarea id="item-description" class="input-box full-width" placeholder="Perfect condition, original piece!"></textarea>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <h3 class="field-label">Product Category</h3>
+
+                <select id="item-product-category" class="input-box full-width" size="5">
+                  <% products.forEach(function(product) { %>
+                    <option id="<%= product.id %>"><%= product.attributes.name %></option>
+                  <% }); %>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-5">
+                <h3 class="field-label">Price</h3>
+                <input id="item-price" class="input-box" placeholder="0.00" type="number">
+              </div>
+
+              <div class="col-md-3">
+                <h3 class="field-label">Quantity</h3>
+                <input id="item-quantity" class="input-box" placeholder="0" type="number">
+              </div>
+
+              <div class="col-md-4">
+                <h3 class="field-label">Featured?</h3>
+
+                <select id="item-featured" class="input-box form-control">
+                  <option>NO</option>
+                  <option>YES</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <h3 class="field-label">Upload/Take A Picture</h3>
+                <input type="file" id="image-file-selector">
+                <input id="image-name" class="input-box full-width" placeholder="Image Name..." type="text" disabled>
+
+                <div class="center">
+                  <button class="btn btn-default btn-md" id="upload-image">Choose Existing Picture&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span></button>
+                  <button class="btn btn-primary btn-md" id="take-new-image">Take A New Picture&nbsp;&nbsp;<span class="glyphicon glyphicon-camera"></span></button>
+                </div>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="center">
+              <button class="btn btn-success btn-lg" id="add-new-item">Add New Item</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section">
+            <h2>Manage Current Products</h2>
+            <hr/>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section">
+            <h2>Manage Current Items</h2>
+            <hr/>
+          </div>
+        </div>
+      </div>
+
+      <div class="jumbotron">
+        <p>You are currently logged in as:</p>
+        <h2><%= Parse.User.current().get('username') %></h2>
+        <br/>
+        <button class="btn btn-lg btn-warning" id="logout-button">Logout</button>
+      </div>
+    </div>
   </script>
 
   <!-- PRODUCTS VIEW -->

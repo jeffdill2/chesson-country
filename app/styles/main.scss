@@ -152,6 +152,95 @@ a {
   }
 }
 
+.input-box {
+  border: 1px solid $colorLightGray;
+  border-radius: 6px;
+  display: block;
+  font-family: $fontRaleway;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 22px auto;
+  padding: 10px 15px;
+  position: relative;
+  width: 75%;
+}
+
+.button {
+  background-color: $colorFogGray;
+  border: 1px solid $colorGray;
+  border-radius: 4px;
+  color: $colorDarkGray;
+  display: inline-block;
+  font-family: $fontOswald;
+  font-size: 1.75em;
+  font-style: normal;
+  font-weight: 900;
+  height: 80px;
+  line-height: 50px;
+  margin: 40px auto 10px auto;
+  outline: none;
+  text-align: center;
+  text-shadow: 1px 1px 0px $colorOffWhite;
+  width: 300px;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.center {
+  text-align: center;
+}
+
+.full-width {
+  max-width: 100%;
+  width: 100%;
+}
+
+.field-label {
+  margin-bottom: -10px;
+  margin-left: 2px;
+  margin-top: 0px;
+}
+
+#item-quantity {
+  float: left;
+  width: 80px;
+}
+
+#item-featured {
+  float: left;
+  height: 51px;
+  width: 100px;
+}
+
+#item-price {
+  padding-left: 25px;
+  width: 160px;
+}
+
+#upload-image,
+#take-new-image {
+  margin-top: -6px;
+  margin-bottom: 10px;
+}
+
+#image-file-selector {
+  display: none;
+}
+
+//
+// ADMIN
+// -----
+.section {
+  background-color: $colorOffWhite;
+  border: 1px solid $colorLightGray;
+  border-radius: 4px;
+  box-shadow: 0px 3px 12px 0px $colorFogGray;
+  margin-bottom: 40px;
+  padding: 0px 20px 20px 20px;
+}
+
 //
 // FOOTER
 // ------
