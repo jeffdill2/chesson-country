@@ -22,15 +22,23 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: 'Oswald', 'Helvetica', 'Arial', sans-serif;
+  font-family: $fontOswald;
+}
+
+h2 {
+  color: $colorGray;
 }
 
 p {
-  font-family: 'Raleway', 'Helvetica', 'Arial', sans-serif;
+  font-family: $fontRaleway;
 }
 
 a {
   color: inherit;
+}
+
+hr {
+  border-top-color: $colorFogGray;
 }
 
 //
@@ -42,12 +50,13 @@ a {
   right: 0px;
   z-index: 1001;
 
-  li {
-    font-family: 'Oswald', 'Helvetica', 'Arial', sans-serif;
+  & li {
+    font-family: $fontOswald;
     font-size: 16px;
 
-    a {
+    & a {
       color: $colorGray;
+      cursor: pointer;
     }
   }
 }
@@ -61,7 +70,7 @@ a {
 }
 
 #header-login-button {
-  cursor: pointer;
+  padding-top: 4px;
 }
 
 .logo {
@@ -84,6 +93,10 @@ a {
   padding-top: 160px;
 }
 
+.container {
+  padding: 0;
+}
+
 .home-banner {
   width: 100%;
   z-index: -1;
@@ -91,10 +104,10 @@ a {
 
 .jumbotron {
   text-align: center;
-  border: 1px solid $colorFogGray;
+  border: 1px solid $colorLightGray;
   box-shadow: 0px 3px 12px 0px $colorFogGray;
 
-  .btn {
+  & .btn {
     font-size: 21px;
     padding: 14px 24px;
   }
@@ -108,7 +121,7 @@ a {
   padding-bottom: 10px;
   text-align: center;
 
-  h2 {
+  & h2 {
     line-height: 10px;
   }
 }
@@ -126,16 +139,16 @@ a {
   width: 350px;
   min-height: 350px;
 
-  .feature-name {
+  & .feature-name {
     text-align: center;
   }
 
-  .feature-description {
+  & .feature-description {
     padding: 20px;
   }
 
-  .feature-image {
-    img {
+  & .feature-image {
+    & img {
       margin-left: 5%;
       width: 90%;
     }
@@ -143,11 +156,11 @@ a {
 }
 
 .product-container {
-  .products-name {
+  & .products-name {
     text-align: center;
   }
 
-  .products-description {
+  & .products-description {
     text-align: center;
   }
 }
@@ -247,8 +260,8 @@ a {
 .footer {
   border-top: 1px solid $colorLightGray;
   color: $colorGray;
-  font-family: 'Raleway', 'Helvetica', 'Arial', sans-serif;
-  margin-top: 40px;
+  font-family: $fontRaleway;
+  margin-top: 60px;
   margin-bottom: 20px;
   padding: 25px 15px 10px 15px;
   text-align: center;
