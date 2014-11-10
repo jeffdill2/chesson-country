@@ -15,6 +15,12 @@ Parse.history.start();
 // INITIALIZE APPLICATION
 // ----------------------
 $(document).ready(function() {
+	if (Parse.User.current()) {
+		$('#header-login-button a').text('Admin');
+	} else {
+		$('#header-login-button a').text('Login');
+	}
+
 	// LOGIN BUTTON
 	$('#header-login-button').on('click', function() {
 		if (Parse.User.current()) {

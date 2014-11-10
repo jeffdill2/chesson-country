@@ -33,12 +33,8 @@
     <div class="header">
       <div class="container">
         <ul class="nav nav-pills pull-right">
-          <li style="padding-top: 5px;">
-            <a>
-              <div id="header-login-button">
-                Login
-              </div>
-            </a>
+          <li id="header-login-button">
+            <a>Login</a>
           </li>
         </ul>
 
@@ -157,9 +153,12 @@
 
   <!-- LOGIN VIEW -->
   <script type="text/template" id="login-view-template">
-    <input id="username-input-box" placeholder="Username">
-    <input id="password-input-box" placeholder="Password" type="password">
-    <button class="button" id="login-button" >Sign In</button>
+    <div class="jumbotron">
+      <input id="username-input-box" class="input-box" placeholder="Username">
+      <input id="password-input-box" class="input-box" placeholder="Password" type="password">
+      <br/>
+      <button class="btn btn-info btn-lg" id="login-button">Login</button>
+    </div>
   </script>
 
   <!-- ADMIN VIEW -->

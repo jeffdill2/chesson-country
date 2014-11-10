@@ -47,7 +47,11 @@ var Router = Parse.Router.extend({
 	},
 
 	renderAdmin: function() {
-		this.swapView(new AdminView());
+		if (Parse.User.current()) {
+			this.swapView(new AdminView());
+		} else {
+			router.navigate('/#');
+		}
 	},
 
 	renderLogin: function() {
