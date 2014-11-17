@@ -41,6 +41,14 @@ hr {
   border-top-color: $colorFogGray;
 }
 
+tr {
+  vertical-align: middle;
+}
+
+input {
+  width: 100%;
+}
+
 .footer p {
   color: $colorOffWhite;
 }
@@ -256,6 +264,17 @@ hr {
   box-shadow: 0px 3px 12px 0px $colorFogGray;
   margin-bottom: 40px;
   padding: 0px 20px 20px 20px;
+}
+
+.edit-product,
+.update-product {
+  float: right;
+  margin-right: 10px;
+}
+
+.cancel-product-update,
+.delete-product {
+  float: right;
 }
 
 //
