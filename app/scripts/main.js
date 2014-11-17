@@ -15,6 +15,16 @@ Parse.history.start();
 // INITIALIZE APPLICATION
 // ----------------------
 $(document).ready(function() {
+	// MOUNTAINS ANIMATION
+	$(window).scroll(function() {
+	  if ($(window).scrollTop() > ($(document).height() - $(window).height()) - 70) {
+	  	$('.mountains').addClass('mountains-shown', 1000);
+	  } else {
+	  	$('.mountains').removeClass('mountains-shown', 1000);
+	  }
+	});
+
+	// ADMIN OR LOGIN
 	if (Parse.User.current()) {
 		$('#header-login-button a').text('Admin');
 	} else {

@@ -41,6 +41,10 @@ hr {
   border-top-color: $colorFogGray;
 }
 
+.footer p {
+  color: $colorOffWhite;
+}
+
 //
 // HEADER
 // ------
@@ -265,6 +269,22 @@ hr {
   margin-bottom: 20px;
   padding: 25px 15px 10px 15px;
   text-align: center;
+}
+
+.mountains {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  bottom: -310px;
+  -webkit-transform: translate3d(0,0,0);
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  transform: translate3d(0,0,0);
+  z-index: -1;
+}
+
+.mountains-shown {
+  bottom: -60px;
 }
 
 //
