@@ -64,5 +64,13 @@ var Router = Parse.Router.extend({
 		}
 
 		this.currentView = view;
+
+		$('.mountains').removeClass('mountains-shown', 1000);
+
+		if ($(document).height() <= $(window).height() - 70) {
+			$('.mountains').addClass('mountains-shown', 1000);
+	  } else {
+	  	$('.mountains').removeClass('mountains-shown', 1000);
+		}
 	}
 });

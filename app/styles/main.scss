@@ -15,6 +15,10 @@ $icon-font-path: '/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 //
 // TAGS
 // ----
+html, body {
+  height: 100%;
+}
+
 body {
   background-image: $bodyBackground;
   color: $colorDarkGray;
@@ -47,10 +51,6 @@ tr {
 
 input {
   width: 100%;
-}
-
-.footer p {
-  color: $colorOffWhite;
 }
 
 //
@@ -102,7 +102,10 @@ input {
 // BODY
 // ----
 .body-container {
+  margin-bottom: -140px;
+  min-height: 100%;
   padding-top: 160px;
+  padding-bottom: 160px;
 }
 
 .container {
@@ -281,13 +284,17 @@ input {
 // FOOTER
 // ------
 .footer {
-  border-top: 1px solid $colorLightGray;
+  border-top: 1px solid $colorOffWhite;
   color: $colorGray;
   font-family: $fontRaleway;
   margin-top: 60px;
   margin-bottom: 20px;
-  padding: 25px 15px 10px 15px;
+  padding: 30px 15px 0px 15px;
   text-align: center;
+
+  p {
+    color: $colorOffWhite;
+  }
 }
 
 .mountains {
