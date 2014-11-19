@@ -270,14 +270,22 @@ input {
 }
 
 .edit-product,
-.update-product {
+.edit-item,
+.update-product,
+.update-item {
   float: right;
-  margin-right: 10px;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  width: 112px;
 }
 
 .cancel-product-update,
-.delete-product {
-  float: right;
+.cancel-item-update,
+.delete-product,
+.delete-item {
+  @extend .edit-product;
+
+  margin-left: 2px;
 }
 
 //

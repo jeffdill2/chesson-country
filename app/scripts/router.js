@@ -59,15 +59,15 @@ var Router = Parse.Router.extend({
 	},
 
 	swapView: function (view) {
+		$('.mountains').removeClass('mountains-shown', 1000);
+
 		if (this.currentView) {
 			this.currentView.remove();
 		}
 
 		this.currentView = view;
 
-		$('.mountains').removeClass('mountains-shown', 1000);
-
-		if ($(document).height() <= $(window).height() - 70) {
+		if ($(document).height() === $(window).height()) {
 			$('.mountains').addClass('mountains-shown', 1000);
 	  } else {
 	  	$('.mountains').removeClass('mountains-shown', 1000);
