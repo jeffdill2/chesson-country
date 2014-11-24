@@ -67,10 +67,12 @@ var Router = Parse.Router.extend({
 
 		$('.mountains').removeClass('mountains-shown', 1000);
 
-		if ($(document).height() <= $(window).height() - 70) {
-			$('.mountains').addClass('mountains-shown', 1000);
-	  } else {
-	  	$('.mountains').removeClass('mountains-shown', 1000);
-		}
+		setTimeout(function() {
+			if ($(document).height() - 70 <= $(window).height()) {
+				$('.mountains').addClass('mountains-shown', 1000);
+		  } else {
+		  	$('.mountains').removeClass('mountains-shown', 1000);
+			}
+		}, 1000);
 	}
 });

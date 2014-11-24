@@ -49,6 +49,7 @@ var AdminView = Parse.View.extend({
 		var productName = $('#product-name').val();
 		var productDescription = $('#product-description').val();
 		var product = new Product();
+		var _this = this;
 
 		if (productName === "" || productDescription === "") {
 			return sweetAlert('Oops!', 'Looks like you forgot to enter the name or description.', 'error');
@@ -63,6 +64,8 @@ var AdminView = Parse.View.extend({
 
 				$('#product-name').val('');
 				$('#product-description').val('');
+
+				_this.render();
 			},
 			error: function() {
 				sweetAlert('Oops!', 'New product was unable to be created', 'error');
@@ -148,6 +151,7 @@ var AdminView = Parse.View.extend({
 	deleteProduct: function(click) {
 		var productId = click.target.dataset.productId;
 		var query = new Parse.Query('Product');
+		var _this = this;
 
 		query.get(productId, {
 			success: function(product) {
@@ -161,7 +165,8 @@ var AdminView = Parse.View.extend({
 					closeOnConfirm: false
 				}, function() {
 					product.destroy();
-					$('#delete-product-' + productId).parents('tr').remove();
+
+					_this.render();
 
 					swal("Deleted!", "This product has been successfully removed.", "success");
 				});
