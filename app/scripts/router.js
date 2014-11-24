@@ -59,6 +59,8 @@ var Router = Parse.Router.extend({
 	},
 
 	swapView: function (view) {
+		$('.mountains').removeClass('mountains-shown', 1000);
+
 		if (this.currentView) {
 			this.currentView.remove();
 		}

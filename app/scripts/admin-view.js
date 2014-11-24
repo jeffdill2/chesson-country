@@ -12,6 +12,10 @@ var AdminView = Parse.View.extend({
 		'click .edit-product' 					: 'editProduct',
 		'click .update-product' 				: 'updateProduct',
 		'click .cancel-product-update'  : 'resetProductButtons',
+		'click .delete-item'						: 'deleteItem',
+		'click .edit-item' 							: 'editItem',
+		'click .update-item' 						: 'updateItem',
+		'click .cancel-item-update'  		: 'resetItemButtons',
 		'keypress #product-name' 				: 'productKeypress',
 		'keypress #product-description' : 'productKeypress',
 		'keypress #item-name'						: 'itemKeypress',
@@ -27,11 +31,23 @@ var AdminView = Parse.View.extend({
 
 	render: function() {
 		var _this = this;
-		var query = new Parse.Query('Product');
+		var productQuery = new Parse.Query('Product');
+		var itemQuery = new Parse.Query('Item');
 
-		query.find({
-			success: function(results) {
-				_this.$el.html(_this.template({products: results}));
+		productQuery.find({
+			success: function(products) {
+
+				itemQuery.find({
+					success: function(items) {
+						_this.$el.html(_this.template({
+							products: products, 
+							items: items
+						}));
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
 			},
 			error: function(error) {
 				console.log(error);
@@ -85,7 +101,7 @@ var AdminView = Parse.View.extend({
 		var itemProductCategory 			 = $('#item-product-category').val();
 		var itemProductCategoryId  		 = $('#item-product-category').children(':selected').attr('id');
 		var itemQuantity 					 		 = parseInt($('#item-quantity').val());
-		var itemPrice 								 = parseInt($('#item-price').val());
+		var itemPrice 								 = parseFloat($('#item-price').val());
 		var itemFeatured 							 = $('#item-featured').val() === "YES" ? true : false;
 		var item 											 = new Item();
 		var itemProductCategoryPointer = {
@@ -248,5 +264,105 @@ var AdminView = Parse.View.extend({
 		$('#delete-product-' + productId).addClass('delete-product');
 		$('#delete-product-' + productId).removeClass('cancel-product-update');
 		$('#delete-product-' + productId).html('Delete Product' + deleteGlyphicon);
+	},
+
+	deleteItem: function(click) {
+		var itemId = click.target.dataset.itemId;
+		var query = new Parse.Query('Item');
+
+		query.get(itemId, {
+			success: function(item) {
+				sweetAlert({
+					title: "Are you sure?",
+					text: "You will not be able to recover this item!",
+					type: "warning",
+					showCancelButton: true,
+					confirmButtonColor: "#DD6B55",
+					confirmButtonText: "Yes, delete it!",
+					closeOnConfirm: false
+				}, function() {
+					item.destroy();
+					$('#delete-item-' + itemId).parents('tr').remove();
+
+					sweetAlert("Deleted!", "This item has been successfully removed.", "success");
+				});
+			},
+			error: function(error) {
+				console.log(error);
+			}
+		});
+	},
+
+	editItem: function(click) {
+		var itemId = click.target.dataset.itemId;
+		var saveGlyphicon = '&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span>';
+		var cancelGlyphicon = '&nbsp;&nbsp;<span class="glyphicon glyphicon-ban-circle"></span>';
+		var $nameElement = $($('#edit-item-' + itemId).parents('tr').children('td')[0]);
+		var $descriptionElement = $($('#edit-item-' + itemId).parents('tr').children('td')[1]);
+
+		$nameElement.html('<input id="edit-item-name" type="text" value="' + $nameElement.text() + '" data-original-value="' + $nameElement.text() + '">');
+		$descriptionElement.html('<input id="edit-item-description" type="text" value="' + $descriptionElement.text() + '" data-original-value="' + $descriptionElement.text() + '">');
+
+		$('#edit-item-' + itemId).removeClass('edit-item');
+		$('#edit-item-' + itemId).removeClass('btn-info');
+		$('#edit-item-' + itemId).addClass('update-item');
+		$('#edit-item-' + itemId).html('Save Update' + saveGlyphicon);
+
+		$('#delete-item-' + itemId).removeClass('delete-item');
+		$('#delete-item-' + itemId).addClass('cancel-item-update');
+		$('#delete-item-' + itemId).html('Cancel Update' + cancelGlyphicon);
+	},
+
+	updateItem: function(click) {
+		var itemId = click.target.dataset.itemId;
+		var query = new Parse.Query('Item');
+		var itemName = $('#edit-item-' + itemId).parents('tr').find('input')[0].value;
+		var itemDescription = $('#edit-item-' + itemId).parents('tr').find('input')[1].value;
+
+		query.get(itemId, {
+			success: function(item) {
+				item.set('name', itemName);
+				item.set('description', itemDescription);
+
+				item.save({
+					success: function() {
+						sweetAlert('Success!', 'The item has been updated.', 'success');
+					},
+					error: function(error) {
+						sweetAlert('Oops!', 'The item was unable to be updated.', 'error');
+						console.log(error);
+					}
+				});
+			},
+			error: function(error) {
+				sweetAlert('Oops!', 'The item was unable to be updated.', 'error');
+				console.log(error);
+			}
+		});
+
+		$('.cancel-item-update#delete-item-' + itemId).click();
+
+		$($('#edit-item-' + itemId).parents('tr').children('td')[0]).html(itemName);
+		$($('#edit-item-' + itemId).parents('tr').children('td')[1]).html(itemDescription);
+	},
+
+	resetItemButtons: function(click) {
+		var itemId = click.target.dataset.itemId;
+		var editGlyphicon = '&nbsp;&nbsp;<span class="glyphicon glyphicon-pencil"></span>';
+		var deleteGlyphicon = '&nbsp;&nbsp;<span class="glyphicon glyphicon-trash"></span>';
+		var itemName = $('#edit-item-' + itemId).parents('tr').find('input')[0].dataset.originalValue;
+		var itemDescription = $('#edit-item-' + itemId).parents('tr').find('input')[1].dataset.originalValue;
+
+		$($('#edit-item-' + itemId).parents('tr').children('td')[0]).html(itemName);
+		$($('#edit-item-' + itemId).parents('tr').children('td')[1]).html(itemDescription);
+
+		$('#edit-item-' + itemId).removeClass('update-item');
+		$('#edit-item-' + itemId).addClass('btn-info');
+		$('#edit-item-' + itemId).addClass('edit-item');
+		$('#edit-item-' + itemId).html('Edit Item' + editGlyphicon);
+
+		$('#delete-item-' + itemId).addClass('delete-item');
+		$('#delete-item-' + itemId).removeClass('cancel-item-update');
+		$('#delete-item-' + itemId).html('Delete Item' + deleteGlyphicon);
 	}
 });
