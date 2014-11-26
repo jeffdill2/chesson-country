@@ -17,8 +17,9 @@ var Router = Parse.Router.extend({
 		'products/:productId' : 'renderProduct',
 		'items'								: 'renderItems',
 		'items/:itemId'				: 'renderItem',
+		'login' 							: 'renderLogin',
 		'admin'								: 'renderAdmin',
-		'login'								: 'renderLogin'
+		'admin/item/:itemId'  : 'renderAdminItem'
 	},
 
 	initialize: function() {
@@ -54,6 +55,10 @@ var Router = Parse.Router.extend({
 		}
 	},
 
+	renderAdminItem: function(itemId) {
+		this.swapView(new AdminItemView(itemId));
+	},
+
 	renderLogin: function() {
 		this.swapView(new LoginView());
 	},
@@ -66,8 +71,6 @@ var Router = Parse.Router.extend({
 		}
 
 		this.currentView = view;
-
-		$('.mountains').removeClass('mountains-shown', 1000);
 
 		setTimeout(function() {
 			if ($(document).height() - 70 <= $(window).height()) {

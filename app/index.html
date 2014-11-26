@@ -253,7 +253,7 @@
 
                 <div class="center">
                   <button class="btn btn-default btn-md" id="upload-image">Choose Existing Picture&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span></button>
-                  <button class="btn btn-primary btn-md" id="take-new-image">Take A New Picture&nbsp;&nbsp;<span class="glyphicon glyphicon-camera"></span></button>
+                  <button class="btn btn-default btn-md" id="take-new-image">Take A New Picture&nbsp;&nbsp;<span class="glyphicon glyphicon-camera"></span></button>
                 </div>
               </div>
             </div>
@@ -340,6 +340,89 @@
         <h2><%= Parse.User.current().get('username') %></h2>
         <br/>
         <button class="btn btn-lg btn-warning" id="logout-button">Logout&nbsp;&nbsp;<span class="glyphicon glyphicon-lock"></span></button>
+      </div>
+    </div>
+  </script>
+
+  <!-- ADMIN ITEM VIEW -->
+  <script type="text/template" id="admin-item-view-template">
+    <div class="col-md-12">
+      <div class="section">
+        <h2>Edit Item</h2>
+        <hr/>
+
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="field-label">Item Name</h3>
+            <input id="item-name" class="input-box full-width" value="<%= item.attributes.name %>">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="field-label">Item Description</h3>
+            <textarea id="item-description" class="input-box full-width"><%= item.attributes.description %></textarea>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <h3 class="field-label">Product Category</h3>
+
+            <select id="item-product-category" class="input-box full-width" size="5">
+              <% products.forEach(function(product) { %>
+                <option id="<%= product.id %>" <%= (item.attributes.product.id === product.id) ? 'selected' : '' %>><%= product.attributes.name %></option>
+              <% }); %>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-5">
+            <h3 class="field-label">Price</h3>
+            <input id="item-price" class="input-box" type="number" value="<%= item.attributes.price %>">
+          </div>
+
+          <div class="col-md-3">
+            <h3 class="field-label">Quantity</h3>
+            <input id="item-quantity" class="input-box" type="number" value="<%= item.attributes.quantity %>">
+          </div>
+
+          <div class="col-md-4">
+            <h3 class="field-label">Featured?</h3>
+
+            <select id="item-featured" class="input-box form-control">
+              <% if (item.attributes.featured) { %>
+                <option>NO</option>
+                <option selected>YES</option>
+              <% } else { %>
+                <option selected>NO</option>
+                <option>YES</option>
+              <% } %>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="field-label">Upload/Take A Picture</h3>
+            <input type="file" id="image-file-selector">
+            <input id="image-name" class="input-box full-width" placeholder="Image Name..." type="text" disabled value="<%= item.attributes.image.name() %>">
+
+            <div class="center">
+              <button class="btn btn-default btn-md" id="upload-image">Choose Existing Picture&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span></button>
+              <button class="btn btn-default btn-md" id="take-new-image">Take A New Picture&nbsp;&nbsp;<span class="glyphicon glyphicon-camera"></span></button>
+            </div>
+          </div>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="center">
+          <button class="btn btn-success btn-lg" id="save-item-changes" data-item-id="<%= item.id %>">Save Changes&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span></button>
+          <button class="btn btn-danger btn-lg" id="cancel-changes">Cancel Changes</button>
+        </div>
       </div>
     </div>
   </script>
@@ -461,6 +544,7 @@
   <!-- endbuild -->
 
   <!-- build:js({app,.tmp}) scripts/main.js -->
+  <script src="scripts/admin-item-view.js"></script>
   <script src="scripts/item-view.js"></script>
   <script src="scripts/items-view.js"></script>
   <script src="scripts/product-view.js"></script>
