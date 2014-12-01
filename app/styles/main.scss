@@ -231,6 +231,22 @@ input {
   margin-top: 0px;
 }
 
+//
+// ITEMS
+// -----
+.item-container {
+  background-color: white;
+  border: 1px solid $colorHardWhite;
+  border-radius: 4px;
+  box-shadow: 0px 3px 12px 0px $colorFogGray;
+  margin-bottom: 40px;
+  padding: 20px 20px 20px 20px;
+}
+
+.item-view-container {
+  margin-top: -45px;
+}
+
 #item-quantity {
   float: left;
   width: 80px;
@@ -243,8 +259,15 @@ input {
 }
 
 #item-price {
+  float: left;
   padding-left: 25px;
   width: 160px;
+}
+
+#item-image-container {
+  & img {
+    width: 100%;
+  }
 }
 
 #upload-image,
@@ -255,6 +278,53 @@ input {
 
 #image-file-selector {
   display: none;
+}
+
+#related-items-banner {
+  padding-bottom: 30px;
+  padding-left: 10px;
+
+  & h1 {
+    line-height: 110px;
+  }
+}
+
+.related-item-preview {
+  background-color: $colorWhite;
+  border: 1px solid $colorHardWhite;
+  border-radius: 3px;
+  display: inline-block;
+  margin-left: 6px;
+  margin-right: 6px;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+
+  & img {
+    background-color: $colorOffWhite;
+    height: 100px;
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.item-box {
+  & h5 {
+    display: inline-block;
+  }
+}
+
+.social-links {
+  display: inline;
+  position: absolute;
+  right: 30px;
+  top: 17px;
+
+  & span {
+    display: inline-block;
+  }
 }
 
 //
@@ -335,15 +405,6 @@ input {
     padding-right: 0;
   }
 }
-
-
-
-
-
-
-
-
-
 
 //
 // INSTALLED STYLES

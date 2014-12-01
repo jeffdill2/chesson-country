@@ -17,12 +17,32 @@ var ItemView = Parse.View.extend({
 	render: function(itemId) {
 		var _this = this;
 		var query = new Parse.Query('Item');
+		var innerQuery = new Parse.Query('Item');
 
-		query.equalTo('objectId', itemId);
+		query.include('product');
 
-		query.find({
-			success: function(results) {
-				_this.$el.html(_this.template({item: results[0]}));
+		query.get(itemId, {
+			success: function(item) {
+				var productPointer = {
+					__type:    'Pointer',
+					className: 'Product',
+					objectId:  item.attributes.product.id
+				}
+
+				innerQuery.equalTo('product', productPointer);
+
+				innerQuery.find({
+					success: function(relatedItems) {
+						_this.$el.html(_this.template({
+							item: 				item,
+							relatedItems: relatedItems.slice(0, 5),
+							itemsCount: 	relatedItems.length
+						}));
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
 			},
 			error: function(error) {
 				console.log(error);

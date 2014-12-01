@@ -19,8 +19,8 @@ var ItemsView = Parse.View.extend({
 		var query = new Parse.Query('Item');
 
 		query.find({
-			success: function(results) {
-				_this.$el.html(_this.template({items: results}));
+			success: function(items) {
+				_this.$el.html(_this.template({items: items}));
 			},
 			error: function(error) {
 				console.log(error);

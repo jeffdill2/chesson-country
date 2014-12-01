@@ -2,29 +2,34 @@
 <html class="no-js">
 
 <head>
-  <meta charset="utf-8">
   <title>Welcome to Chesson Country</title>
+
+  <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
   <link rel="shortcut icon" href="/favicon.ico">
-  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
   <!-- build:css styles/vendor.css -->
   <link href='http://fonts.googleapis.com/css?family=Oswald|Raleway|Lobster' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="../../bower_components/sweetalert/lib/sweet-alert.css">
   <!-- bower:css -->
   <!-- endbower -->
   <!-- endbuild -->
+
   <!-- build:css(.tmp) styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
   <!-- endbuild -->
+
+  <!-- SHARE THIS BUTTONS -->
+  <script type="text/javascript">var switchTo5x=true;</script>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "3d31a831-4892-41a5-bbdb-5e25ed17af9c", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 </head>
 
 <body>
   <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
-
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
   <!-- - - - - - -
   |         HEADER
@@ -490,16 +495,70 @@
 
   <!-- ITEM VIEW -->
   <script type="text/template" id="item-view-template">
-    <div class="row">
-        <div class="item-box col-md-6">
+    <div id="related-items-banner">
+      <div class="row">
+        <div class="col-md-3">
+          <h1><%= item.attributes.product.attributes.name %></h1>
+        </div>
+
+        <div class="col-md-9">
+          <div class="col-md-12 center">
+            <h4>Check out some other related items:</h4>
+          </div>
+
+          <div class="col-md-12">
+            <a href="/#items">
+              <div class="related-item-preview center pull-right">
+                <h2><%= itemsCount %></h2>
+                <h4>Items</h4>
+              </div>
+            </a>
+
+            <% relatedItems.forEach(function(relatedItem) { %>
+              <a href="/#items/<%= relatedItem.id %>">
+                <div class="related-item-preview pull-right">
+                  <img src="<%= relatedItem.attributes.image._url %>">
+                </div>
+              </a>
+            <% }); %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-container">
+      <div class="row">
+        <div class="item-box col-md-8">
+          <div class="alert alert-info">
+            <h5>Like what youre seeing? Share with these links!</h5>
+
+            <div class="social-links">
+              <span class='st_sharethis_large' displayText='ShareThis'></span>
+              <span class='st_pinterest_large' displayText='Pinterest'></span>
+              <span class='st_facebook_large' displayText='Facebook'></span>
+              <span class='st_twitter_large' displayText='Tweet'></span>
+            </div>
+          </div>
+
+          <div id="item-image-container">
+            <img src="<%= item.attributes.image._url %>">
+          </div>
+        </div>
+
+        <div class="item-box col-md-4">
           <div class="item-name">
-            <h3><%= item.attributes.name %></h3>
+            <h2><%= item.attributes.name %></h2>
           </div>
 
           <div class="item-description">
             <p><%= item.attributes.description %></p>
           </div>
+
+          <div class="item-price">
+            <h2>$<%= item.attributes.price %></h2>
+          </div>
         </div>
+      </div>
     </div>
   </script>
 
