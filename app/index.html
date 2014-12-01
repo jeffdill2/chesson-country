@@ -230,17 +230,17 @@
             </div>
 
             <div class="row">
-              <div class="col-md-5">
+              <div class="col-md-5 price-container">
                 <h3 class="field-label">Price</h3>
                 <input id="item-price" class="input-box" placeholder="0.00" type="number">
               </div>
 
-              <div class="col-md-3">
+              <div class="col-md-3 quantity-container">
                 <h3 class="field-label">Quantity</h3>
                 <input id="item-quantity" class="input-box" placeholder="0" type="number">
               </div>
 
-              <div class="col-md-4">
+              <div class="col-md-4 featured-container">
                 <h3 class="field-label">Featured?</h3>
 
                 <select id="item-featured" class="input-box form-control">
@@ -375,25 +375,25 @@
             <h3 class="field-label">Product Category</h3>
 
             <select id="item-product-category" class="input-box full-width" size="5">
-              <% products.forEach(function(product) { %>
-                <option id="<%= product.id %>" <%= (item.attributes.product.id === product.id) ? 'selected' : '' %>><%= product.attributes.name %></option>
-              <% }); %>
+                <% products.forEach(function(product) { %>
+                  <option id="<%= product.id %>" <%= item.attributes.product ? ((item.attributes.product.id === product.id) ? 'selected' : '') : '' %>><%= product.attributes.name %></option>
+                <% }); %>
             </select>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-5">
+          <div class="col-md-5 price-container">
             <h3 class="field-label">Price</h3>
             <input id="item-price" class="input-box" type="number" value="<%= item.attributes.price %>">
           </div>
 
-          <div class="col-md-3">
+          <div class="col-md-3 quantity-container">
             <h3 class="field-label">Quantity</h3>
             <input id="item-quantity" class="input-box" type="number" value="<%= item.attributes.quantity %>">
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-4 featured-container">
             <h3 class="field-label">Featured?</h3>
 
             <select id="item-featured" class="input-box form-control">

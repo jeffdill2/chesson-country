@@ -358,6 +358,12 @@ input {
   margin-left: 2px;
 }
 
+.price-container,
+.quantity-container,
+.featured-container {
+  float: left;
+}
+
 //
 // FOOTER
 // ------
@@ -370,7 +376,7 @@ input {
   padding: 30px 15px 0px 15px;
   text-align: center;
 
-  p {
+  & p {
     color: $colorOffWhite;
   }
 }

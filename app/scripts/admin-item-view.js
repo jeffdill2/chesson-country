@@ -69,7 +69,7 @@ var AdminItemView = Parse.View.extend({
 			objectId:  itemProductCategoryId
 		}
 
-		if (itemName === "" || itemDescription === "" || !(itemQuantity > 0) || itemProductCategory === "" || (!imageFile && !imageName) || !(itemPrice > 0)) {
+		if (itemName === "" || itemDescription === "" || !(itemQuantity > 0) || !itemProductCategory || (!imageFile && !imageName) || !(itemPrice > 0)) {
 			return sweetAlert('Oops!', 'Looks like you forgot to enter some item info.', 'error');
 		}
 

@@ -94,6 +94,7 @@ var AdminView = Parse.View.extend({
 	},
 
 	addNewItem: function() {
+		var _this = this;
 		var imageFile = $('#image-file-selector')[0].files[0];
 		var imageFileName = imageFile ? imageFile.name : null;
 		var parseImageFile = new Parse.File(imageFileName, imageFile);
@@ -111,7 +112,7 @@ var AdminView = Parse.View.extend({
 			objectId:  itemProductCategoryId
 		}
 
-		if (itemName === "" || itemDescription === "" || !(itemQuantity > 0) || itemProductCategory === "" || !imageFile || !(itemPrice > 0)) {
+		if (itemName === "" || itemDescription === "" || !(itemQuantity > 0) || !itemProductCategory || !imageFile || !(itemPrice > 0)) {
 			return sweetAlert('Oops!', 'Looks like you forgot to enter some item info.', 'error');
 		}
 
@@ -130,15 +131,7 @@ var AdminView = Parse.View.extend({
 			success: function() {
 				sweetAlert('Success!', 'Your new item has been created.', 'success');
 
-				$('#item-name').val('');
-				$('#item-description').val('');
-				$('#item-quantity').val('0');
-				$('#item-price').val('0');
-				$('#image-name').val('');
-				$('#item-product-category').children(':selected').attr('selected', false);
-
-				$('#add-new-item').text('Add New Item');
-				$('#add-new-item').attr('disabled', false);
+				_this.render();
 			},
 			error: function(error) {
 				sweetAlert('Oops!', 'New item was unable to be created', 'error');
@@ -166,26 +159,78 @@ var AdminView = Parse.View.extend({
 	},
 
 	deleteProduct: function(click) {
-		var productId = click.target.dataset.productId;
-		var query = new Parse.Query('Product');
 		var _this = this;
+		var productId = click.target.dataset.productId;
+		var productQuery = new Parse.Query('Product');
+		var itemQuery = new Parse.Query('Item');
+		var itemProductCategoryPointer = {
+			__type: 	 "Pointer",
+			className: 'Product',
+			objectId:  productId
+		}
 
-		query.get(productId, {
+		itemQuery.equalTo('product', itemProductCategoryPointer);
+
+		productQuery.get(productId, {
 			success: function(product) {
-				sweetAlert({
-					title: "Are you sure?",
-					text: "You will not be able to recover this product!",
-					type: "warning",
-					showCancelButton: true,
-					confirmButtonColor: "#DD6B55",
-					confirmButtonText: "Yes, delete it!",
-					closeOnConfirm: false
-				}, function() {
-					product.destroy();
+				itemQuery.find({
+					success: function(items) {
+						var itemsCount = items.length
 
-					_this.render();
+						if (itemsCount > 0) {
+							sweetAlert({
+								title: "Are you sure?",
+								text: "You will not be able to recover this product!",
+								type: "warning",
+								showCancelButton: true,
+								confirmButtonColor: "#DD6B55",
+								confirmButtonText: "Yes, delete it!",
+								closeOnConfirm: false
+							}, function() {
+								sweetAlert({
+									title: "Delete Items as well?",
+									text: "There are currently " + itemsCount.toString() + " items associated with this Product. Would you like to delete those as well?",
+									type: "info",
+									showCancelButton: true,
+									confirmButtonColor: "#DD6B55",
+									confirmButtonText: "Yes, delete the items!",
+									cancelButtonText: "No, keep the items!",
+									closeOnConfirm: false
+								}, function(isConfirm) {
+									product.destroy();
 
-					swal("Deleted!", "This product has been successfully removed.", "success");
+									if (isConfirm) {
+										items.forEach(function(item) {
+											item.destroy();
+										});
+									}
+
+									_this.render();
+
+									swal("Deleted!", "This product has been successfully removed.", "success");
+								});
+							});
+						} else {
+							sweetAlert({
+								title: "Are you sure?",
+								text: "You will not be able to recover this product!",
+								type: "warning",
+								showCancelButton: true,
+								confirmButtonColor: "#DD6B55",
+								confirmButtonText: "Yes, delete it!",
+								closeOnConfirm: false
+							}, function() {
+								product.destroy();
+
+								_this.render();
+
+								swal("Deleted!", "This product has been successfully removed.", "success");
+							});
+						}
+					},
+					error: function(error) {
+						console.log(error);
+					}
 				});
 			},
 			error: function(error) {
