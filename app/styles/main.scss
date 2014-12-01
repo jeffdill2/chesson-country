@@ -21,11 +21,12 @@ html, body {
 
 body {
   background-image: $bodyBackground;
+  background-position: static;
   color: $colorDarkGray;
   padding: 0px;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5, h6 {
   font-family: $fontOswald;
 }
 
