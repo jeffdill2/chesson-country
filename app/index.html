@@ -130,7 +130,6 @@
         415 Mauldin Road<br/>
         Greenville, SC 29605
       </h2>
-      <!-- //<p><a class="btn btn-lg btn-success" href="#">Splendid! <span class="glyphicon glyphicon-ok"></span></a></p> -->
     </div>
 
     <a id="featured-items"></a>
@@ -499,19 +498,15 @@
     <div id="related-items-banner">
       <div class="row">
         <div class="col-md-3">
-          <h1><%= item.attributes.product.attributes.name %></h1>
+          <h1><%= item.attributes.product.attributes.name.toUpperCase() %></h1>
         </div>
 
         <div class="col-md-9">
-          <div class="col-md-12 center">
-            <h4>Check out some other related items:</h4>
-          </div>
-
           <div class="col-md-12">
             <a href="/#items">
               <div class="related-item-preview center pull-right">
-                <h2><%= itemsCount %></h2>
-                <h4>Items</h4>
+                <h3><%= itemsCount %></h3>
+                <h5>items</h5>
               </div>
             </a>
 
@@ -551,12 +546,16 @@
             <h2><%= item.attributes.name %></h2>
           </div>
 
+          <hr>
+
           <div class="item-description">
-            <p><%= item.attributes.description %></p>
+            <h4><strong>Description</strong></h4>
+            <h4><p><%= item.attributes.description %></p></h4>
           </div>
 
           <div class="item-price">
-            <h2>$<%= item.attributes.price %></h2>
+            <i class="fa fa-usd"></i>
+            <h2><%= item.attributes.price.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %></h2>
           </div>
         </div>
       </div>
