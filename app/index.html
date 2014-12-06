@@ -552,6 +552,10 @@
             <i class="fa fa-usd"></i>
             <h2><%= item.attributes.price.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %></h2>
           </div>
+
+          <a href="mailto:jeffdill2@gmail.com?subject=<%= item.attributes.name %>&body=I'm very interested in purchasing and/or getting more information about this item!%0D%0A %0D%0A %0D%0Ahttp://www.chessoncountry.com/#items/<%= item.id %>">
+            <button class="btn btn-primary btn-lg" id="request-more-info" data-item-id="<%= item.id %>">Request More Info&nbsp;&nbsp;<i class="fa fa-envelope-o"></i></button>
+          </a>
         </div>
       </div>
     </div>
