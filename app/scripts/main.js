@@ -15,6 +15,9 @@ Parse.history.start();
 // INITIALIZE APPLICATION
 // ----------------------
 $(document).ready(function() {
+	new ProductsDropdownView();
+	new ItemsDropdownView();
+
 	// MOUNTAINS ANIMATION
 	$(window).scroll(function() {
 	  if ($(window).scrollTop() > ($(document).height() - $(window).height()) - 70) {

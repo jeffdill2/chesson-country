@@ -45,36 +45,8 @@
 
     <div class="header-nav">
       <div class="container">
-        <ul class="nav nav-pills pull-left">
+        <ul id="navbar-dropdowns" class="nav nav-pills pull-left">
           <li><a id="featured-items-link">FEATURED</a></li>
-
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">PRODUCTS<span class="caret"></span></a>
-
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="/#products">View All Products...</a></li>
-              <li class="divider"></li>
-              <li><a href="#">Furniture</a></li>
-              <li><a href="#">Toys</a></li>
-              <li><a href="#">Houseware</a></li>
-              <li><a href="#">Collectibles</a></li>
-              <li><a href="/#products">...and more!</a></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">ITEMS<span class="caret"></span></a>
-
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="/#items">View All Items...</a></li>
-              <li class="divider"></li>
-              <li><a href="#">1938 Dining Room Table</a></li>
-              <li><a href="#">1942 Floor Lamp</a></li>
-              <li><a href="#">1967 Leather Ottoman</a></li>
-              <li><a href="#">1954 Toy Corvette</a></li>
-              <li><a href="/#items">...and more!</a></li>
-            </ul>
-          </li>
         </ul>
       </div>
     </div>
@@ -102,6 +74,38 @@
   <!-- - - - - - -
   |      TEMPLATES
   - - - - - - - -->
+
+  <!-- PRODUCTS DROPDOWN -->
+  <script type="text/template" id="products-dropdown-view-template">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">PRODUCTS<span class="caret"></span></a>
+
+    <ul id="products-dropdown" class="dropdown-menu" role="menu">
+      <li><a href="/#products">View All Products...</a></li>
+      <li class="divider"></li>
+
+      <% products.forEach(function(product) { %>
+        <li><a href="/#products/<%= product.id %>"><%= product.attributes.name %></a></li>
+      <% }); %>
+
+      <li><a href="/#products">...and more!</a></li>
+    </ul>
+  </script>
+
+  <!-- ITEMS DROPDOWN -->
+  <script type="text/template" id="items-dropdown-view-template">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">ITEMS<span class="caret"></span></a>
+
+    <ul class="dropdown-menu" role="menu">
+      <li><a href="/#items">View All Items...</a></li>
+      <li class="divider"></li>
+
+      <% items.forEach(function(item) { %>
+        <li><a href="/#items/<%= item.id %>"><%= item.attributes.name %></a></li>
+      <% }); %>
+
+      <li><a href="/#items">...and more!</a></li>
+    </ul>
+  </script>
 
   <!-- HOME VIEW -->
   <script type="text/template" id="home-view-template">
@@ -602,6 +606,8 @@
   <!-- endbuild -->
 
   <!-- build:js({app,.tmp}) scripts/main.js -->
+  <script src="scripts/items-dropdown-view.js"></script>
+  <script src="scripts/products-dropdown-view.js"></script>
   <script src="scripts/admin-item-view.js"></script>
   <script src="scripts/item-view.js"></script>
   <script src="scripts/items-view.js"></script>
