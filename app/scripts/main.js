@@ -78,7 +78,7 @@ $(document).ready(function() {
 				$('html, body').animate({scrollTop: $('#featured-items').offset().top - 80}, 'slow');
 				clearInterval(interval);
 			}
-		}, 100);
+		}, 500);
 	});
 
 	// IMAGE FILE UPLOAD

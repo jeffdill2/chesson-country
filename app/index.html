@@ -109,62 +109,66 @@
 
   <!-- HOME VIEW -->
   <script type="text/template" id="home-view-template">
-    <div class="jumbotron">
-      <h1>Welcome!</h1>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Welcome!</h1>
 
-      <br/>
+        <br/>
 
-      <p class="lead">
-        Thanks for visiting <span style="font-family: 'Lobster'; font-size: 28px; color: #777;">Chesson Country</span>! Please enjoy
-        browsing the inventory of unique, vintage, and antique items that we have for sale. We&#8217;d also love to meet you
-        in person at our product showroom at
-        <a target="_blank" href="//www.facebook.com/pages/Southern-Estates-Antiques-Inc/113845738669203">
-          <strong>Southern Estates Antiques.</strong>
-        </a>
-      </p>
+        <p class="lead">
+          Thanks for visiting <span style="font-family: 'Lobster'; font-size: 28px; color: #777;">Chesson Country</span>! Please enjoy
+          browsing the inventory of unique, vintage, and antique items that we have for sale. We&#8217;d also love to meet you
+          in person at our product showroom at
+          <a target="_blank" href="//www.facebook.com/pages/Southern-Estates-Antiques-Inc/113845738669203">
+            <strong>Southern Estates Antiques.</strong>
+          </a>
+        </p>
 
-      <br/>
+        <br/>
 
-      <h2>
-        415 Mauldin Road<br/>
-        Greenville, SC 29605
-      </h2>
-    </div>
+        <h2>
+          415 Mauldin Road<br/>
+          Greenville, SC 29605
+        </h2>
+      </div>
 
-    <a id="featured-items"></a>
+      <a id="featured-items"></a>
 
-    <div class="featured-banner">
-      <h2>Featured Items</h2>
-    </div>
+      <div class="featured-banner">
+        <h2>Featured Items</h2>
+      </div>
 
-    <div class="row">
-      <% items.forEach(function(item) { %>
-        <a href="/#items/<%= item.id %>">
-          <div class="featured-item col-md-6">
-            <div class="feature-name">
-              <h3><%= item.attributes.name %></h3>
+      <div class="row">
+        <% items.forEach(function(item) { %>
+          <a href="/#items/<%= item.id %>">
+            <div class="featured-item col-md-6">
+              <div class="feature-name">
+                <h3><%= item.attributes.name %></h3>
+              </div>
+
+              <div class="feature-image">
+                <img src="<%= item.attributes.image._url %>">
+              </div>
+
+              <div class="feature-description">
+                <p><%= item.attributes.description %></p>
+              </div>
             </div>
-
-            <div class="feature-image">
-              <img src="<%= item.attributes.image._url %>">
-            </div>
-
-            <div class="feature-description">
-              <p><%= item.attributes.description %></p>
-            </div>
-          </div>
-        </a>
-      <% }); %>
+          </a>
+        <% }); %>
+      </div>
     </div>
   </script>
 
   <!-- LOGIN VIEW -->
   <script type="text/template" id="login-view-template">
-    <div class="jumbotron">
-      <input id="username-input-box" class="input-box" placeholder="Username">
-      <input id="password-input-box" class="input-box" placeholder="Password" type="password">
-      <br/>
-      <button class="btn btn-info btn-lg" id="login-button">Login&nbsp;&nbsp;<span class="glyphicon glyphicon-lock"></span></button>
+    <div class="container">
+      <div class="jumbotron">
+        <input id="username-input-box" class="input-box" placeholder="Username">
+        <input id="password-input-box" class="input-box" placeholder="Password" type="password">
+        <br/>
+        <button class="btn btn-info btn-lg" id="login-button">Login&nbsp;&nbsp;<span class="glyphicon glyphicon-lock"></span></button>
+      </div>
     </div>
   </script>
 
@@ -359,82 +363,84 @@
 
   <!-- ADMIN ITEM VIEW -->
   <script type="text/template" id="admin-item-view-template">
-    <div class="col-md-12">
-      <div class="section">
-        <h2>Edit Item</h2>
-        <hr/>
+    <div class="container">
+      <div class="col-md-12">
+        <div class="section">
+          <h2>Edit Item</h2>
+          <hr/>
 
-        <div class="row">
-          <div class="col-md-12">
-            <h3 class="field-label">Item Name</h3>
-            <input id="item-name" class="input-box full-width" value="<%= item.attributes.name %>">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12">
-            <h3 class="field-label">Item Description</h3>
-            <textarea id="item-description" class="input-box full-width"><%= item.attributes.description %></textarea>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <h3 class="field-label">Product Category</h3>
-
-            <select id="item-product-category" class="input-box full-width" size="5">
-                <% products.forEach(function(product) { %>
-                  <option id="<%= product.id %>" <%= item.attributes.product ? ((item.attributes.product.id === product.id) ? 'selected' : '') : '' %>><%= product.attributes.name %></option>
-                <% }); %>
-            </select>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-5 price-container">
-            <h3 class="field-label">Price</h3>
-            <input id="item-price" class="input-box" type="number" value="<%= item.attributes.price %>">
-          </div>
-
-          <div class="col-md-3 quantity-container">
-            <h3 class="field-label">Quantity</h3>
-            <input id="item-quantity" class="input-box" type="number" value="<%= item.attributes.quantity %>">
-          </div>
-
-          <div class="col-md-4 featured-container">
-            <h3 class="field-label">Featured?</h3>
-
-            <select id="item-featured" class="input-box form-control">
-              <% if (item.attributes.featured) { %>
-                <option>NO</option>
-                <option selected>YES</option>
-              <% } else { %>
-                <option selected>NO</option>
-                <option>YES</option>
-              <% } %>
-            </select>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12">
-            <h3 class="field-label">Upload/Take A Picture</h3>
-            <input type="file" id="image-file-selector">
-            <input id="image-name" class="input-box full-width" placeholder="Image Name..." type="text" disabled value="<%= item.attributes.image.name() %>">
-
-            <div class="center">
-              <button class="btn btn-default btn-md" id="upload-image">Choose Existing Picture&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span></button>
-              <button class="btn btn-default btn-md" id="take-new-image">Take A New Picture&nbsp;&nbsp;<span class="glyphicon glyphicon-camera"></span></button>
+          <div class="row">
+            <div class="col-md-12">
+              <h3 class="field-label">Item Name</h3>
+              <input id="item-name" class="input-box full-width" value="<%= item.attributes.name %>">
             </div>
           </div>
-        </div>
 
-        <br>
-        <br>
+          <div class="row">
+            <div class="col-md-12">
+              <h3 class="field-label">Item Description</h3>
+              <textarea id="item-description" class="input-box full-width"><%= item.attributes.description %></textarea>
+            </div>
+          </div>
 
-        <div class="center">
-          <button class="btn btn-success btn-lg" id="save-item-changes" data-item-id="<%= item.id %>">Save Changes&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span></button>
-          <button class="btn btn-danger btn-lg" id="cancel-changes">Cancel Changes</button>
+          <div class="row">
+            <div class="col-md-6">
+              <h3 class="field-label">Product Category</h3>
+
+              <select id="item-product-category" class="input-box full-width" size="5">
+                  <% products.forEach(function(product) { %>
+                    <option id="<%= product.id %>" <%= item.attributes.product ? ((item.attributes.product.id === product.id) ? 'selected' : '') : '' %>><%= product.attributes.name %></option>
+                  <% }); %>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-5 price-container">
+              <h3 class="field-label">Price</h3>
+              <input id="item-price" class="input-box" type="number" value="<%= item.attributes.price %>">
+            </div>
+
+            <div class="col-md-3 quantity-container">
+              <h3 class="field-label">Quantity</h3>
+              <input id="item-quantity" class="input-box" type="number" value="<%= item.attributes.quantity %>">
+            </div>
+
+            <div class="col-md-4 featured-container">
+              <h3 class="field-label">Featured?</h3>
+
+              <select id="item-featured" class="input-box form-control">
+                <% if (item.attributes.featured) { %>
+                  <option>NO</option>
+                  <option selected>YES</option>
+                <% } else { %>
+                  <option selected>NO</option>
+                  <option>YES</option>
+                <% } %>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <h3 class="field-label">Upload/Take A Picture</h3>
+              <input type="file" id="image-file-selector">
+              <input id="image-name" class="input-box full-width" placeholder="Image Name..." type="text" disabled value="<%= item.attributes.image.name() %>">
+
+              <div class="center">
+                <button class="btn btn-default btn-md" id="upload-image">Choose Existing Picture&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span></button>
+                <button class="btn btn-default btn-md" id="take-new-image">Take A New Picture&nbsp;&nbsp;<span class="glyphicon glyphicon-camera"></span></button>
+              </div>
+            </div>
+          </div>
+
+          <br>
+          <br>
+
+          <div class="center">
+            <button class="btn btn-success btn-lg" id="save-item-changes" data-item-id="<%= item.id %>">Save Changes&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span></button>
+            <button class="btn btn-danger btn-lg" id="cancel-changes">Cancel Changes</button>
+          </div>
         </div>
       </div>
     </div>
@@ -442,133 +448,141 @@
 
   <!-- PRODUCTS VIEW -->
   <script type="text/template" id="products-view-template">
-    <div class="row">
-      <% products.forEach(function(product) { %>
-        <a href="/#products/<%= product.id %>">
-          <div class="product-container">
-            <div class="products-box col-md-4">
-              <div class="products-name">
-                <h3><%= product.attributes.name %></h3>
-              </div>
+    <div class="container">
+      <div class="row">
+        <% products.forEach(function(product) { %>
+          <a href="/#products/<%= product.id %>">
+            <div class="product-container">
+              <div class="products-box col-md-4">
+                <div class="products-name">
+                  <h3><%= product.attributes.name %></h3>
+                </div>
 
-              <div class="products-description">
-                <p><%= product.attributes.description %></p>
+                <div class="products-description">
+                  <p><%= product.attributes.description %></p>
+                </div>
               </div>
             </div>
-          </div>
-        </a>
-      <% }); %>
+          </a>
+        <% }); %>
+      </div>
     </div>
   </script>
 
   <!-- PRODUCT VIEW -->
   <script type="text/template" id="product-view-template">
-    <div class="row">
-      <% items.forEach(function(item) { %>
-        <a href="/#items/<%= item.id %>">
-          <div class="products-box col-md-6">
-            <div class="products-name">
-              <h3><%= item.attributes.name %></h3>
-            </div>
+    <div class="container">
+      <div class="row">
+        <% items.forEach(function(item) { %>
+          <a href="/#items/<%= item.id %>">
+            <div class="products-box col-md-6">
+              <div class="products-name">
+                <h3><%= item.attributes.name %></h3>
+              </div>
 
-            <div class="products-description">
-              <p><%= item.attributes.description %></p>
+              <div class="products-description">
+                <p><%= item.attributes.description %></p>
+              </div>
             </div>
-          </div>
-        </a>
-      <% }); %>
+          </a>
+        <% }); %>
+      </div>
     </div>
   </script>
 
   <!-- ITEMS VIEW -->
   <script type="text/template" id="items-view-template">
-    <div class="row">
-      <% items.forEach(function(item) { %>
-        <a href="/#items/<%= item.id %>">
-          <div class="item-container">
-            <div class="items-box col-md-4">
-              <div class="items-name">
-                <h3><%= item.attributes.name %></h3>
-              </div>
+    <div class="container">
+      <div class="row">
+        <% items.forEach(function(item) { %>
+          <a href="/#items/<%= item.id %>">
+            <div class="item-container">
+              <div class="items-box col-md-4">
+                <div class="items-name">
+                  <h3><%= item.attributes.name %></h3>
+                </div>
 
-              <div class="items-description">
-                <p><%= item.attributes.description %></p>
+                <div class="items-description">
+                  <p><%= item.attributes.description %></p>
+                </div>
               </div>
             </div>
-          </div>
-        </a>
-      <% }); %>
+          </a>
+        <% }); %>
+      </div>
     </div>
   </script>
 
   <!-- ITEM VIEW -->
   <script type="text/template" id="item-view-template">
-    <div id="related-items-banner">
-      <div class="row">
-        <div class="col-md-3">
-          <h1><%= item.attributes.product.attributes.name.toUpperCase() %></h1>
-        </div>
+    <div class="container">
+      <div id="related-items-banner">
+        <div class="row">
+          <div class="col-md-3">
+            <h1><%= item.attributes.product.attributes.name.toUpperCase() %></h1>
+          </div>
 
-        <div class="col-md-9">
-          <div class="col-md-12">
-            <a href="/#items">
-              <div class="related-item-preview center pull-right">
-                <h3><%= itemsCount %></h3>
-                <h5>items</h5>
-              </div>
-            </a>
-
-            <% relatedItems.forEach(function(relatedItem) { %>
-              <a href="/#items/<%= relatedItem.id %>">
-                <div class="related-item-preview pull-right">
-                  <img src="<%= relatedItem.attributes.image._url %>">
+          <div class="col-md-9">
+            <div class="col-md-12">
+              <a href="/#items">
+                <div class="related-item-preview center pull-right">
+                  <h3><%= itemsCount %></h3>
+                  <h5>items</h5>
                 </div>
               </a>
-            <% }); %>
+
+              <% relatedItems.forEach(function(relatedItem) { %>
+                <a href="/#items/<%= relatedItem.id %>">
+                  <div class="related-item-preview pull-right">
+                    <img src="<%= relatedItem.attributes.image._url %>">
+                  </div>
+                </a>
+              <% }); %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="item-container">
-      <div class="row">
-        <div class="item-box col-md-8">
-          <div class="alert alert-info">
-            <h5>Like what youre seeing? Share with these links!</h5>
+      <div class="item-container">
+        <div class="row">
+          <div class="item-box col-md-8">
+            <div class="alert alert-info">
+              <h5>Like what youre seeing? Share with these links!</h5>
 
-            <div class="social-links">
-              <a target="_blank" href="<%= pinterestLink %>"><i class="fa fa-pinterest-square fa-3x"></i></a>
-              <a target="_blank" href="<%= facebookLink %>"><i class="fa fa-facebook-square fa-3x"></i></a>
-              <a target="_blank" href="<%= twitterLink %>"><i class="fa fa-twitter-square fa-3x"></i></a>
-              <a target="_blank" href="<%= googlePlusLink %>"><i class="fa fa-google-plus-square fa-3x"></i></a>
+              <div class="social-links">
+                <a target="_blank" href="<%= pinterestLink %>"><i class="fa fa-pinterest-square fa-3x"></i></a>
+                <a target="_blank" href="<%= facebookLink %>"><i class="fa fa-facebook-square fa-3x"></i></a>
+                <a target="_blank" href="<%= twitterLink %>"><i class="fa fa-twitter-square fa-3x"></i></a>
+                <a target="_blank" href="<%= googlePlusLink %>"><i class="fa fa-google-plus-square fa-3x"></i></a>
+              </div>
+            </div>
+
+            <div id="item-image-container">
+              <img src="<%= item.attributes.image._url %>">
             </div>
           </div>
 
-          <div id="item-image-container">
-            <img src="<%= item.attributes.image._url %>">
+          <div class="item-box col-md-4">
+            <div class="item-name">
+              <h2><%= item.attributes.name %></h2>
+            </div>
+
+            <hr>
+
+            <div class="item-description">
+              <h4><strong>Description</strong></h4>
+              <h4><p><%= item.attributes.description %></p></h4>
+            </div>
+
+            <div class="item-price">
+              <i class="fa fa-usd"></i>
+              <h2><%= item.attributes.price.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %></h2>
+            </div>
+
+            <a href="mailto:jeffdill2@gmail.com?subject=<%= item.attributes.name %>&body=I'm very interested in purchasing and/or getting more information about this item!%0D%0A %0D%0A %0D%0Ahttp://www.chessoncountry.com/#items/<%= item.id %>">
+              <button class="btn btn-primary btn-lg" id="request-more-info" data-item-id="<%= item.id %>">Request More Info&nbsp;&nbsp;<i class="fa fa-envelope-o"></i></button>
+            </a>
           </div>
-        </div>
-
-        <div class="item-box col-md-4">
-          <div class="item-name">
-            <h2><%= item.attributes.name %></h2>
-          </div>
-
-          <hr>
-
-          <div class="item-description">
-            <h4><strong>Description</strong></h4>
-            <h4><p><%= item.attributes.description %></p></h4>
-          </div>
-
-          <div class="item-price">
-            <i class="fa fa-usd"></i>
-            <h2><%= item.attributes.price.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %></h2>
-          </div>
-
-          <a href="mailto:jeffdill2@gmail.com?subject=<%= item.attributes.name %>&body=I'm very interested in purchasing and/or getting more information about this item!%0D%0A %0D%0A %0D%0Ahttp://www.chessoncountry.com/#items/<%= item.id %>">
-            <button class="btn btn-primary btn-lg" id="request-more-info" data-item-id="<%= item.id %>">Request More Info&nbsp;&nbsp;<i class="fa fa-envelope-o"></i></button>
-          </a>
         </div>
       </div>
     </div>
