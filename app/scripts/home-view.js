@@ -1,7 +1,7 @@
 'use strict';
 
 var HomeView = Parse.View.extend({
-	className: 'home-view-container',
+	className: 'home-view-container slidable-view',
 
 	events: {
 
@@ -11,10 +11,11 @@ var HomeView = Parse.View.extend({
 
 	initialize: function() {
 		$('.view-container').append(this.el);
-		this.render();
+		this.render(true);
 	},
 
-	render: function() {
+	render: function(useSlideAnimation) {
+		useSlideAnimation = typeof useSlideAnimation !== 'undefined' ? useSlideAnimation : false;
 		var _this = this;
 		var query = new Parse.Query('Item');
 
@@ -25,7 +26,13 @@ var HomeView = Parse.View.extend({
 		query.find({
 			success: function(results) {
 				var featuredItems = {items: results};
-				_this.$el.html(_this.template(featuredItems));
+				var template = _this.template(featuredItems);
+
+				if (useSlideAnimation) {
+					_this.slideIn(template, _this.$el);
+				} else {
+					_this.$el.html(template);
+				}
 			},
 			error: function(error) {
 				console.log(error);

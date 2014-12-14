@@ -1,7 +1,7 @@
 'use strict';
 
 var AdminItemView = Parse.View.extend({
-	className: 'admin-item-view-container',
+	className: 'admin-item-view-container slidable-view',
 
 	events: {
 		'click #upload-image'			 : 'uploadImage',
@@ -13,10 +13,11 @@ var AdminItemView = Parse.View.extend({
 
 	initialize: function(itemId) {
 		$('.view-container').append(this.el);
-		this.render(itemId);
+		this.render(itemId, true);
 	},
 
-	render: function(itemId) {
+	render: function(itemId, useSlideAnimation) {
+		useSlideAnimation = typeof useSlideAnimation !== 'undefined' ? useSlideAnimation : false;
 		var _this = this;
 		var itemQuery = new Parse.Query('Item');
 		var productQuery = new Parse.Query('Product');
@@ -28,10 +29,16 @@ var AdminItemView = Parse.View.extend({
 			success: function(products) {
 				itemQuery.find({
 					success: function(items) {
-						_this.$el.html(_this.template({
+						var template = _this.template({
 							products: products,
 							item: 		items[0]
-						}));
+						});
+
+						if (useSlideAnimation) {
+							_this.slideIn(template, _this.$el);
+						} else {
+							_this.$el.html(template);
+						}
 					},
 					error: function(error) {
 						console.log(error);

@@ -20,6 +20,17 @@ var CHESSON_COUNTRY_GLOBALS = {
 };
 
 //
+// PARSE EXTENSIONS
+// ----------------
+Parse.View.prototype.slideIn = function(template, wrapper) {
+	wrapper.html(template).show(0, function() {
+  	wrapper.animate({
+  		'margin-left': '0px'
+  	}, 200);
+	});
+};
+
+//
 // INITIALIZE APPLICATION
 // ----------------------
 $(document).ready(function() {

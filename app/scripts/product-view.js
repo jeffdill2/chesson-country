@@ -1,7 +1,7 @@
 'use strict';
 
 var ProductView = Parse.View.extend({
-	className: 'product-view-container',
+	className: 'product-view-container slidable-view',
 
 	events: {
 
@@ -11,10 +11,11 @@ var ProductView = Parse.View.extend({
 
 	initialize: function(productId) {
 		$('.view-container').append(this.el);
-		this.render(productId);
+		this.render(productId, true);
 	},
 
-	render: function(productId) {
+	render: function(productId, useSlideAnimation) {
+		useSlideAnimation = typeof useSlideAnimation !== 'undefined' ? useSlideAnimation : false;
 		var _this = this;
 		var query = new Parse.Query('Item');
 		var product = {
@@ -27,7 +28,13 @@ var ProductView = Parse.View.extend({
 
 		query.find({
 			success: function(results) {
-				_this.$el.html(_this.template({items: results}));
+				var template = _this.template({items: results});
+
+				if (useSlideAnimation) {
+					_this.slideIn(template, _this.$el);
+				} else {
+					_this.$el.html(template);
+				}
 			},
 			error: function(error) {
 				console.log(error);

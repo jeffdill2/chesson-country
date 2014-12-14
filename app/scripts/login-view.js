@@ -1,7 +1,7 @@
 "use strict";
 
 var LoginView = Parse.View.extend({
-	className: "login-view-container",
+	className: "login-view-container slidable-view",
 
 	events: {
 		'click #login-button'					 : 'login',
@@ -13,12 +13,17 @@ var LoginView = Parse.View.extend({
 
 	initialize: function(options) {
 		$('.view-container').html(this.el);
-		this.render();
+		this.render(true);
 	},
 
-	render: function() {
-		var renderedTemplate = this.template;
-		this.$el.html(renderedTemplate);
+	render: function(useSlideAnimation) {
+		useSlideAnimation = typeof useSlideAnimation !== 'undefined' ? useSlideAnimation : false;
+
+		if (useSlideAnimation) {
+			_this.slideIn(this.template, _this.$el);
+		} else {
+			_this.$el.html(this.template);
+		}
 	},
 
 	login: function() {

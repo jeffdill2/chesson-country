@@ -67,7 +67,12 @@ var Router = Parse.Router.extend({
 		$('.mountains').removeClass('mountains-shown', 1000);
 
 		if (this.currentView) {
-			this.currentView.remove();
+			this.currentView.$el.animate({
+				'margin-left': '-2000px',
+				'margin-right': '2000px'
+			}, 200, function() {
+				this.remove();
+			});
 		}
 
 		this.currentView = view;

@@ -1,7 +1,7 @@
 'use strict';
 
 var ItemView = Parse.View.extend({
-	className: 'item-view-container',
+	className: 'item-view-container slidable-view',
 
 	events: {
 
@@ -11,10 +11,11 @@ var ItemView = Parse.View.extend({
 
 	initialize: function(itemId) {
 		$('.view-container').append(this.el);
-		this.render(itemId);
+		this.render(itemId, true);
 	},
 
-	render: function(itemId) {
+	render: function(itemId, useSlideAnimation) {
+		useSlideAnimation = typeof useSlideAnimation !== 'undefined' ? useSlideAnimation : false;
 		var _this = this;
 		var query = new Parse.Query('Item');
 		var innerQuery = new Parse.Query('Item');
@@ -39,7 +40,7 @@ var ItemView = Parse.View.extend({
 
 				innerQuery.find({
 					success: function(relatedItems) {
-						_this.$el.html(_this.template({
+						var template = _this.template({
 							item: 					item,
 							relatedItems: 	relatedItems.slice(0, 5),
 							itemsCount: 		relatedItems.length,
@@ -47,7 +48,13 @@ var ItemView = Parse.View.extend({
 							twitterLink: 		twitterURL + '?url=' + rootURL + '/%23items/' + item.id + '&text=' + item.attributes.name + '&via=' + twitterHandle,
 							googlePlusLink: googlePlusURL + '?url=' + rootURL + '/%23items/' + item.id,
 							pinterestLink: 	pinterestURL + '?url=' + rootURL + '/%23items/' + item.id + '&media=' + item.attributes.image._url + '&description=' + item.attributes.name + "  |  " + item.attributes.description
-						}));
+						});
+
+						if (useSlideAnimation) {
+							_this.slideIn(template, _this.$el);
+						} else {
+							_this.$el.html(template);
+						}
 					},
 					error: function(error) {
 						console.log(error);

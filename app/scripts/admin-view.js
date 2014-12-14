@@ -1,7 +1,7 @@
 'use strict';
 
 var AdminView = Parse.View.extend({
-	className: 'admin-view-container',
+	className: 'admin-view-container slidable-view',
 
 	events: {
 		'click #logout-button' 	 					: 'logout',
@@ -28,10 +28,11 @@ var AdminView = Parse.View.extend({
 
 	initialize: function() {
 		$('.view-container').append(this.el);
-		this.render();
+		this.render(true);
 	},
 
-	render: function() {
+	render: function(useSlideAnimation) {
+		useSlideAnimation = typeof useSlideAnimation !== 'undefined' ? useSlideAnimation : false;
 		var _this = this;
 		var productQuery = new Parse.Query('Product');
 		var itemQuery = new Parse.Query('Item');
@@ -42,10 +43,16 @@ var AdminView = Parse.View.extend({
 			success: function(products) {
 				itemQuery.find({
 					success: function(items) {
-						_this.$el.html(_this.template({
+						var template = _this.template({
 							products: products,
 							items: 		items
-						}));
+						});
+
+						if (useSlideAnimation) {
+							_this.slideIn(template, _this.$el);
+						} else {
+							_this.$el.html(template);
+						}
 					},
 					error: function(error) {
 						console.log(error);
