@@ -11,7 +11,7 @@ var AdminView = Parse.View.extend({
 		'click .delete-product'						: 'deleteProduct',
 		'click .edit-product' 						: 'editProduct',
 		'click .update-product' 					: 'updateProduct',
-		'click .cancel-product-update'  	: 'resetProductButtons',
+		'click .cancel-product-update'  	: 'render',
 		'click .delete-item'							: 'deleteItem',
 		'click .edit-item' 								: 'editItem',
 		'keypress #product-name' 					: 'productKeypress',
@@ -81,10 +81,8 @@ var AdminView = Parse.View.extend({
 			success: function() {
 				sweetAlert('Success!', 'Your new product has been created.', 'success');
 
-				$('#product-name').val('');
-				$('#product-description').val('');
-
 				_this.render();
+				CHESSON_COUNTRY_GLOBALS.productsDropdownView.render();
 			},
 			error: function() {
 				sweetAlert('Oops!', 'New product was unable to be created', 'error');
@@ -134,6 +132,7 @@ var AdminView = Parse.View.extend({
 				sweetAlert('Success!', 'Your new item has been created.', 'success');
 
 				_this.render();
+				CHESSON_COUNTRY_GLOBALS.itemsDropdownView.render();
 			},
 			error: function(error) {
 				sweetAlert('Oops!', 'New item was unable to be created', 'error');
@@ -207,9 +206,11 @@ var AdminView = Parse.View.extend({
 										});
 									}
 
-									_this.render();
-
 									swal("Deleted!", "This product has been successfully removed.", "success");
+
+									_this.render();
+									CHESSON_COUNTRY_GLOBALS.productsDropdownView.render();
+									CHESSON_COUNTRY_GLOBALS.itemsDropdownView.render();
 								});
 							});
 						} else {
@@ -224,9 +225,10 @@ var AdminView = Parse.View.extend({
 							}, function() {
 								product.destroy();
 
-								_this.render();
-
 								swal("Deleted!", "This product has been successfully removed.", "success");
+
+								_this.render();
+								CHESSON_COUNTRY_GLOBALS.productsDropdownView.render();
 							});
 						}
 					},
@@ -262,6 +264,7 @@ var AdminView = Parse.View.extend({
 	},
 
 	updateProduct: function(click) {
+		var _this = this;
 		var productId = click.target.dataset.productId;
 		var query = new Parse.Query('Product');
 		var productName = $('#edit-product-' + productId).parents('tr').find('input')[0].value;
@@ -275,6 +278,9 @@ var AdminView = Parse.View.extend({
 				product.save({
 					success: function() {
 						sweetAlert('Success!', 'The product has been updated.', 'success');
+
+						_this.render();
+						CHESSON_COUNTRY_GLOBALS.productsDropdownView.render();
 					},
 					error: function(error) {
 						sweetAlert('Oops!', 'The product was unable to be updated.', 'error');
@@ -294,27 +300,8 @@ var AdminView = Parse.View.extend({
 		$($('#edit-product-' + productId).parents('tr').children('td')[1]).html(productDescription);
 	},
 
-	resetProductButtons: function(click) {
-		var productId = click.target.dataset.productId;
-		var editGlyphicon = '&nbsp;&nbsp;<span class="glyphicon glyphicon-pencil"></span>';
-		var deleteGlyphicon = '&nbsp;&nbsp;<span class="glyphicon glyphicon-trash"></span>';
-		var productName = $('#edit-product-' + productId).parents('tr').find('input')[0].dataset.originalValue;
-		var productDescription = $('#edit-product-' + productId).parents('tr').find('input')[1].dataset.originalValue;
-
-		$($('#edit-product-' + productId).parents('tr').children('td')[0]).html(productName);
-		$($('#edit-product-' + productId).parents('tr').children('td')[1]).html(productDescription);
-
-		$('#edit-product-' + productId).removeClass('update-product');
-		$('#edit-product-' + productId).addClass('btn-info');
-		$('#edit-product-' + productId).addClass('edit-product');
-		$('#edit-product-' + productId).html('Edit Product' + editGlyphicon);
-
-		$('#delete-product-' + productId).addClass('delete-product');
-		$('#delete-product-' + productId).removeClass('cancel-product-update');
-		$('#delete-product-' + productId).html('Delete Product' + deleteGlyphicon);
-	},
-
 	deleteItem: function(click) {
+		var _this = this;
 		var itemId = click.target.dataset.itemId;
 		var query = new Parse.Query('Item');
 
@@ -330,9 +317,11 @@ var AdminView = Parse.View.extend({
 					closeOnConfirm: false
 				}, function() {
 					item.destroy();
-					$('#delete-item-' + itemId).parents('tr').remove();
 
 					sweetAlert("Deleted!", "This item has been successfully removed.", "success");
+
+					_this.render();
+					CHESSON_COUNTRY_GLOBALS.itemsDropdownView.render();
 				});
 			},
 			error: function(error) {

@@ -96,6 +96,7 @@ var AdminItemView = Parse.View.extend({
 						sweetAlert('Success!', 'Your item has been updated.', 'success');
 
 						_this.redirectBack();
+						CHESSON_COUNTRY_GLOBALS.itemsDropdownView.render();
 					},
 					error: function(error) {
 						sweetAlert('Oops!', 'Your item was unable to be updated.', 'error');

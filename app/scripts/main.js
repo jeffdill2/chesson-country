@@ -12,11 +12,19 @@ var router = new Router();
 Parse.history.start();
 
 //
+// GLOBAL NAMESPACE
+// ----------------
+var CHESSON_COUNTRY_GLOBALS = {
+	productsDropdownView: {},
+	itemsDropdownView: {}
+};
+
+//
 // INITIALIZE APPLICATION
 // ----------------------
 $(document).ready(function() {
-	new ProductsDropdownView();
-	new ItemsDropdownView();
+	CHESSON_COUNTRY_GLOBALS.productsDropdownView = new ProductsDropdownView();
+	CHESSON_COUNTRY_GLOBALS.itemsDropdownView = new ItemsDropdownView();
 
 	// MOUNTAINS ANIMATION
 	$(window).scroll(function() {
