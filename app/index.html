@@ -311,7 +311,7 @@
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Description</th>
+                  <th>Product Category</th>
                   <th>Price</th>
                   <th>Quantity</th>
                   <th>Featured?</th>
@@ -319,10 +319,19 @@
               </thead>
 
               <tbody>
-                <% items.forEach(function(item) { %>
-                  <tr>
+                <% items.forEach(function(item, index) { %>
+                  <% if (!item.attributes.product) { %>
+                    <tr class="orphaned-item">
+                  <% } else if (index > 0) { %>
+                    <% if (!items[index - 1].attributes.product) { %>
+                      <tr class="orphaned-item-neighbor">
+                    <% } %>
+                  <% } else { %>
+                    <tr>
+                  <% } %>
+
                     <td><%= item.attributes.name %></td>
-                    <td><%= item.attributes.description %></td>
+                    <td><%= item.attributes.product ? item.attributes.product.attributes.name : '(unavailable)' %></td>
                     <td>$<%= item.attributes.price.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %></td>
                     <td><%= item.attributes.quantity %></td>
                     <td><%= item.attributes.featured ? "Yes" : "No" %></td>

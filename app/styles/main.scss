@@ -388,6 +388,31 @@ input {
   float: left;
 }
 
+.orphaned-item {
+  background-color: $colorOrphanedItem;
+  border-radius: 4px;
+
+  & td {
+    border-top: none !important;
+
+    &:nth-child(1) {
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+    }
+
+    &:nth-child(6) {
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+  }
+}
+
+.orphaned-item-neighbor {
+  & td {
+    border-top: none !important;
+  }
+}
+
 //
 // FOOTER
 // ------

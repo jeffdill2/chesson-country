@@ -36,6 +36,8 @@ var AdminView = Parse.View.extend({
 		var productQuery = new Parse.Query('Product');
 		var itemQuery = new Parse.Query('Item');
 
+		itemQuery.include('product');
+
 		productQuery.find({
 			success: function(products) {
 				itemQuery.find({
@@ -340,8 +342,6 @@ var AdminView = Parse.View.extend({
 	},
 
 	editItem: function(click) {
-		var itemId = click.target.dataset.itemId;
-
-		router.navigate('/#admin/item/' + itemId);
+		router.navigate('/#admin/item/' + click.target.dataset.itemId);
 	}
 });
