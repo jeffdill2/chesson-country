@@ -13,15 +13,7 @@ var AdminView = Parse.View.extend({
 		'click .update-product' 					: 'updateProduct',
 		'click .cancel-product-update'  	: 'render',
 		'click .delete-item'							: 'deleteItem',
-		'click .edit-item' 								: 'editItem',
-		'keypress #product-name' 					: 'productKeypress',
-		'keypress #product-description' 	: 'productKeypress',
-		'keypress #item-name'							: 'itemKeypress',
-		'keypress #item-description'			: 'itemKeypress',
-		'keypress #item-product-category' : 'itemKeypress',
-		'keypress #item-price' 						: 'itemKeypress',
-		'keypress #item-quantity' 				: 'itemKeypress',
-		'keypress #item-featured' 				: 'itemKeypress'
+		'click .edit-item' 								: 'editItem'
 	},
 
 	template: _.template($('#admin-view-template').text()),
@@ -148,18 +140,6 @@ var AdminView = Parse.View.extend({
 				console.log('Error ' + error);
 			}
 		});
-	},
-
-	productKeypress: function(key) {
-		if (key.which === 13) {
-			this.addNewProduct();
-		}
-	},
-
-	itemKeypress: function(key) {
-		if (key.which === 13) {
-			this.addNewItem();
-		}
 	},
 
 	uploadImage: function() {
