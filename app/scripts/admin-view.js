@@ -65,7 +65,7 @@ var AdminView = Parse.View.extend({
 
 	addNewProduct: function() {
 		var productName = $('#product-name').val();
-		var productDescription = $('#product-description').val();
+		var productDescription = $('#product-description').val().replace(/\r?\n/g, '<br />');
 		var product = new Product();
 		var _this = this;
 
@@ -98,7 +98,7 @@ var AdminView = Parse.View.extend({
 		var imageFileName = imageFile ? imageFile.name : null;
 		var parseImageFile = new Parse.File(imageFileName, imageFile);
 		var itemName = $('#item-name').val();
-		var itemDescription = $('#item-description').val();
+		var itemDescription = $('#item-description').val().replace(/\r?\n/g, '<br />');
 		var itemProductCategory = $('#item-product-category').val();
 		var itemProductCategoryId = $('#item-product-category').children(':selected').attr('id');
 		var itemQuantity = parseInt($('#item-quantity').val());
