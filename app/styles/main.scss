@@ -154,9 +154,7 @@ input {
   background-color: $colorOffWhite;
   border: 1px solid $colorLightGray;
   box-shadow: 0px 3px 12px 0px $colorFogGray;
-  margin: 10px;
-  padding: 5px;
-  width: 350px;
+  margin-bottom: 30px;
   min-height: 350px;
 
   & .feature-name {

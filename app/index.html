@@ -138,25 +138,33 @@
         <h2>Featured Items</h2>
       </div>
 
-      <div class="row">
-        <% items.forEach(function(item) { %>
-          <a href="/#items/<%= item.id %>">
-            <div class="featured-item col-md-6">
-              <div class="feature-name">
-                <h3><%= item.attributes.name %></h3>
-              </div>
+      <% for (var i = 0; i <= items.length - 1; i++) { %>
+        <% if (i % 3 === 0) { %>
+          <div class="row">
+            <% for (var j = i; j < (i + 3); j++) { %>
+              <% if (j < items.length) { %>
+                <div class="col-md-4">
+                  <a href="/#items/<%= items[j].id %>">
+                    <div class="featured-item">
+                      <div class="feature-name">
+                        <h3><%= items[j].attributes.name %></h3>
+                      </div>
 
-              <div class="feature-image">
-                <img src="<%= item.attributes.image._url %>">
-              </div>
+                      <div class="feature-image">
+                        <img src="<%= items[j].attributes.image._url %>">
+                      </div>
 
-              <div class="feature-description">
-                <p><%= item.attributes.description %></p>
-              </div>
-            </div>
-          </a>
-        <% }); %>
-      </div>
+                      <div class="feature-description">
+                        <p><%= items[j].attributes.description %></p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              <% } %>
+            <% } %>
+          </div>
+        <% } %>
+      <% } %>
     </div>
   </script>
 
@@ -496,7 +504,7 @@
       <div class="row">
         <% items.forEach(function(item) { %>
           <a href="/#items/<%= item.id %>">
-            <div class="item-container">
+            <div class="item-link-container">
               <div class="items-box col-md-4">
                 <div class="items-name">
                   <h3><%= item.attributes.name %></h3>
