@@ -157,6 +157,15 @@
                       <div class="feature-description">
                         <p><%= items[j].attributes.description %></p>
                       </div>
+
+                      <div class="feature-price-ribbon">
+                        <div class="feature-price">
+                          <i class="fa fa-usd"></i>
+                          <h2>
+                            <%= parseInt(items[j].attributes.price) %><sup><%= items[j].attributes.price.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").slice(-2) %></sup>
+                          </h2>
+                        </div>
+                      </div>
                     </div>
                   </a>
                 </div>

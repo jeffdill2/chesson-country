@@ -11,6 +11,8 @@ $icon-font-path: '/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 // IMPORTS
 // -------
 @import 'variables';
+@import 'mixins';
+// @import 'bourbon/bourbon';
 
 //
 // TAGS
@@ -40,6 +42,11 @@ p {
 
 a {
   color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 hr {
@@ -163,12 +170,48 @@ input {
 
   & .feature-description {
     padding: 20px;
+    padding-bottom: 80px;
   }
 
   & .feature-image {
     & img {
       margin-left: 5%;
       width: 90%;
+    }
+  }
+
+  & .feature-price-ribbon {
+    @include ribbon($colorRibbon, $colorOffWhite, 50px, left);
+    bottom: 50px;
+    right: 12px;
+    width: 160px;
+
+    & .feature-price {
+      bottom: -8px;
+      position: absolute;
+      right: 18px;
+      text-align: center;
+
+      & i {
+        color: $colorOffWhite;
+        display: inline-block;
+        font-size: 20px;
+        position: relative;
+        text-shadow: 0px 1px 0px $colorDarkGray;
+        top: -10px;
+      }
+
+      & h2 {
+        color: $colorOffWhite;
+        display: inline-block;
+        text-shadow: 0px 1px 0px $colorDarkGray;
+      }
+
+      & sup {
+        font-size: 18px;
+        padding-left: 2px;
+        text-decoration: underline;
+      }
     }
   }
 }
@@ -243,7 +286,7 @@ input {
   border-radius: 4px;
   box-shadow: 0px 3px 12px 0px $colorFogGray;
   margin-bottom: 40px;
-  padding: 20px 20px 20px 20px;
+  padding: 25px;
 
   & .item-description {
     padding-bottom: 20px;
@@ -256,10 +299,11 @@ input {
       display: inline-block;
       font-size: 24px;
       position: relative;
-      top: -4px;
+      top: -12px;
     }
 
-    & h2 {
+    & h1 {
+      color: $colorGray;
       display: inline-block;
     }
   }
