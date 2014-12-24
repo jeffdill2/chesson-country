@@ -18,11 +18,12 @@ var LoginView = Parse.View.extend({
 
 	render: function(useSlideAnimation) {
 		useSlideAnimation = typeof useSlideAnimation !== 'undefined' ? useSlideAnimation : false;
+		var template = this.template();
 
 		if (useSlideAnimation) {
-			_this.slideIn(this.template, _this.$el);
+			this.slideIn(template, this.$el);
 		} else {
-			_this.$el.html(this.template);
+			this.$el.html(template);
 		}
 	},
 
