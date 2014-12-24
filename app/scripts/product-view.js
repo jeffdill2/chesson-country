@@ -17,24 +17,35 @@ var ProductView = Parse.View.extend({
 	render: function(productId, useSlideAnimation) {
 		useSlideAnimation = typeof useSlideAnimation !== 'undefined' ? useSlideAnimation : false;
 		var _this = this;
-		var query = new Parse.Query('Item');
+		var itemQuery = new Parse.Query('Item');
+		var productQuery = new Parse.Query('Product');
 		var product = {
 			__type: "Pointer",
 			className: 'Product',
 			objectId: productId
 		}
 
-		query.equalTo('product', product);
+		itemQuery.equalTo('product', product);
 
-		query.find({
+		itemQuery.find({
 			success: function(results) {
-				var template = _this.template({items: results});
+				productQuery.get(productId, {
+					success: function(product) {
+						var template = _this.template({
+							items: 	 		 results,
+							productName: product.get('name')
+						});
 
-				if (useSlideAnimation) {
-					_this.slideIn(template, _this.$el);
-				} else {
-					_this.$el.html(template);
-				}
+						if (useSlideAnimation) {
+							_this.slideIn(template, _this.$el);
+						} else {
+							_this.$el.html(template);
+						}
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
 			},
 			error: function(error) {
 				console.log(error);

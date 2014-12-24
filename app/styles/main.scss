@@ -123,9 +123,8 @@ input {
   padding: 0;
 }
 
-.home-banner {
-  width: 100%;
-  z-index: -1;
+.remove-top-margin {
+  margin-top: -60px;
 }
 
 .jumbotron {
