@@ -326,6 +326,12 @@ module.exports = function (grunt) {
                     cwd: '.',
                     src: ['bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/*.*'],
                     dest: '<%= config.dist %>'
+                }, {
+                    expand: true,
+                    dot: true,
+                    cwd: '.',
+                    src: ['CNAME'],
+                    dest: '<%= config.dist %>'
                 }]
             },
             styles: {
@@ -355,7 +361,7 @@ module.exports = function (grunt) {
         }
     });
 
-
+    // Tasks
     grunt.registerTask('serve', function (target) {
         if (target === 'dist') {
             return grunt.task.run(['build', 'connect:dist:keepalive']);
