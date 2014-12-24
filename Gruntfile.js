@@ -330,6 +330,12 @@ module.exports = function (grunt) {
                     expand: true,
                     dot: true,
                     cwd: '.',
+                    src: ['bower_components/font-awesome/fonts/*.*'],
+                    dest: '<%= config.dist %>'
+                }, {
+                    expand: true,
+                    dot: true,
+                    cwd: '.',
                     src: ['CNAME'],
                     dest: '<%= config.dist %>'
                 }]
