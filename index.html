@@ -466,12 +466,12 @@
       <div id="related-items-banner">
         <div class="row">
           <div class="col-md-3">
-            <h1><%= item.attributes.product.attributes.name.toUpperCase() %></h1>
+            <h1 class="text-muted"><%= item.attributes.product.attributes.name.toUpperCase() %></h1>
           </div>
 
           <div class="col-md-9">
             <div class="col-md-12">
-              <a href="/#items">
+              <a href="/#products/<%= item.attributes.product.id %>">
                 <div class="related-item-preview center pull-right">
                   <h3><%= itemsCount %></h3>
                   <h5>items</h5>
@@ -526,8 +526,8 @@
             </div>
 
             <div class="text-center">
-              <a id="purchase-item" class="btn btn-success btn-lg" href="mailto:jeffdill2@gmail.com?subject=<%= item.attributes.name %> [Purchase]&body=I love this item and I'm interested in purchasing it!%0D%0A %0D%0A %0D%0Ahttp://www.chessoncountry.com/#items/<%= item.id %>">Gimme This Item!&nbsp;&nbsp;<i class="fa fa-dollar"></i></a>
-              <a id="request-more-info" class="btn btn-primary btn-lg" href="mailto:jeffdill2@gmail.com?subject=<%= item.attributes.name %> [Info]&body=I'd like to get some more information about this item!%0D%0A %0D%0A %0D%0Ahttp://www.chessoncountry.com/#items/<%= item.id %>">Request More Info&nbsp;&nbsp;<i class="fa fa-envelope-o"></i></a>
+              <a id="purchase-item" class="btn btn-success btn-lg" href="mailto:chessoncountry@gmail.com?subject=<%= item.attributes.name %> [Purchase]&body=I love this item and I'm interested in purchasing it!%0D%0A %0D%0A %0D%0Ahttp://www.chessoncountry.com/#items/<%= item.id %>">Gimme This Item!&nbsp;&nbsp;<i class="fa fa-dollar"></i></a>
+              <a id="request-more-info" class="btn btn-primary btn-lg" href="mailto:chessoncountry@gmail.com?subject=<%= item.attributes.name %> [Info]&body=I'd like to get some more information about this item!%0D%0A %0D%0A %0D%0Ahttp://www.chessoncountry.com/#items/<%= item.id %>">Request More Info&nbsp;&nbsp;<i class="fa fa-envelope-o"></i></a>
             </div>
           </div>
         </div>
