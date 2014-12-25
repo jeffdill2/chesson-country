@@ -581,12 +581,12 @@
       <div id="related-items-banner">
         <div class="row">
           <div class="col-md-3">
-            <h1><%= item.attributes.product.attributes.name.toUpperCase() %></h1>
+            <h1 class="text-muted"><%= item.attributes.product.attributes.name.toUpperCase() %></h1>
           </div>
 
           <div class="col-md-9">
             <div class="col-md-12">
-              <a href="/#items">
+              <a href="/#products/<%= item.attributes.product.id %>">
                 <div class="related-item-preview center pull-right">
                   <h3><%= itemsCount %></h3>
                   <h5>items</h5>
