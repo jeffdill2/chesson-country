@@ -397,7 +397,7 @@
           <div class="row">
             <div class="col-md-12">
               <h3 class="field-label">Item Description</h3>
-              <textarea id="item-description" class="input-box full-width"><%= item.attributes.description %></textarea>
+              <textarea id="item-description" class="input-box full-width"><%= item.attributes.description.replace(/\<br \/\>/g, '\n') %></textarea>
             </div>
           </div>
 
