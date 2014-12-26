@@ -280,6 +280,53 @@ input {
 }
 
 //
+// IMAGE MODAL
+// -----------
+#lightbox {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  display: none;
+  position: fixed;
+  text-align: center;
+  z-index: 1001;
+}
+
+#lightbox-backdrop {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: $colorLightboxBackdrop;
+  display: none;
+  position: fixed;
+  z-index: 1001;
+}
+
+#lightbox-image {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: $colorOffWhite;
+  margin: auto auto;
+  max-height: 90%;
+  max-width: 90%;
+  box-shadow: 0px 0px 8px 1px $colorImageShadow;
+  position: absolute;
+}
+
+#lightbox-close-button {
+  color: $colorFogGray;
+  cursor: pointer;
+  font-size: 40px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+
+//
 // ITEMS
 // -----
 .item-container {
@@ -333,13 +380,15 @@ input {
 }
 
 #item-image-container {
+  cursor: pointer;
+
   & img {
     width: 100%;
   }
 }
 
 #upload-image,
-#take-new-image {
+#view-image {
   margin-top: -6px;
   margin-bottom: 10px;
 }

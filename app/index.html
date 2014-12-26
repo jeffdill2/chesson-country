@@ -73,6 +73,16 @@
   </div>
 
   <!-- - - - - - -
+  |    IMAGE MODAL
+  - - - - - - - -->
+  <div id="lightbox-backdrop"></div>
+
+  <div id="lightbox">
+    <span id="lightbox-close-button" class="glyphicon glyphicon-remove-circle"></span>
+    <img id="lightbox-image" src="">
+  </div>
+
+  <!-- - - - - - -
   |      TEMPLATES
   - - - - - - - -->
 
@@ -278,8 +288,7 @@
                 <input id="image-name" class="input-box full-width" placeholder="Image Name..." type="text" disabled>
 
                 <div class="center">
-                  <button class="btn btn-default btn-md" id="upload-image">Choose Existing Picture&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span></button>
-                  <button class="btn btn-default btn-md" id="take-new-image">Take A New Picture&nbsp;&nbsp;<span class="glyphicon glyphicon-camera"></span></button>
+                  <button class="btn btn-default btn-md" id="upload-image">Choose A Picture&nbsp;&nbsp;<span class="glyphicon glyphicon-picture"></span></button>
                 </div>
               </div>
             </div>
@@ -443,11 +452,11 @@
             <div class="col-md-12">
               <h3 class="field-label">Upload/Take A Picture</h3>
               <input type="file" id="image-file-selector">
-              <input id="image-name" class="input-box full-width" placeholder="Image Name..." type="text" disabled value="<%= item.attributes.image.name() %>">
+              <input id="image-name" class="input-box full-width" placeholder="Image Name..." type="text" value="<%= item.attributes.image.name() %>" data-image-url="<%= item.attributes.image._url %>" disabled>
 
               <div class="center">
-                <button class="btn btn-default btn-md" id="upload-image">Choose Existing Picture&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span></button>
-                <button class="btn btn-default btn-md" id="take-new-image">Take A New Picture&nbsp;&nbsp;<span class="glyphicon glyphicon-camera"></span></button>
+                <button class="btn btn-default btn-md" id="upload-image">Choose A Picture&nbsp;&nbsp;<span class="glyphicon glyphicon-picture"></span></button>
+                <button class="btn btn-default btn-md" id="view-image">View Current Picture&nbsp;&nbsp;<span class="glyphicon glyphicon-eye-open"></span></button>
               </div>
             </div>
           </div>
@@ -456,7 +465,7 @@
           <br>
 
           <div class="center">
-            <button class="btn btn-success btn-lg" id="save-item-changes" data-item-id="<%= item.id %>">Save Changes&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span></button>
+            <button class="btn btn-success btn-lg" id="save-item-changes" data-item-id="<%= item.id %>">Save Changes</button>
             <button class="btn btn-danger btn-lg" id="cancel-changes">Cancel Changes</button>
           </div>
         </div>

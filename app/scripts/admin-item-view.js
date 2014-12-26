@@ -5,6 +5,7 @@ var AdminItemView = Parse.View.extend({
 
 	events: {
 		'click #upload-image'			 : 'uploadImage',
+		'click #view-image'				 : 'viewImage',
 		'click #save-item-changes' : 'saveItemChanges',
 		'click #cancel-changes' 	 : 'redirectBack'
 	},
@@ -53,6 +54,10 @@ var AdminItemView = Parse.View.extend({
 
 	uploadImage: function() {
 		$('#image-file-selector').click();
+	},
+
+	viewImage: function() {
+		showLightbox($('#image-name').data().imageUrl);
 	},
 
 	saveItemChanges: function(click) {

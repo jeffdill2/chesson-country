@@ -4,7 +4,7 @@ var ItemView = Parse.View.extend({
 	className: 'item-view-container slidable-view',
 
 	events: {
-
+		'click #item-image-container' : 'viewImage'
 	},
 
 	template: _.template($('#item-view-template').text()),
@@ -65,5 +65,9 @@ var ItemView = Parse.View.extend({
 				console.log(error);
 			}
 		});
+	},
+
+	viewImage: function() {
+		showLightbox($('#item-image-container img').attr('src'));
 	}
 });

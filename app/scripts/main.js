@@ -68,7 +68,7 @@ $(document).ready(function() {
 	});
 
 	// FEATURED ITEMS
-	$('#featured-items-link').click(function() {
+	$('#featured-items-link').on('click', function() {
 		if (window.location.href.replace(window.location.origin, '').length > 2) {
 			router.navigate('/#');
 		}
@@ -85,4 +85,23 @@ $(document).ready(function() {
 	$(document).on('change', '#image-file-selector', function() {
 		$('#image-name').val($('#image-file-selector').val());
 	});
+
+	// IMAGE MODAL LIGHTBOX
+	$('#lightbox').on('click', function() {
+		hideLightbox();
+	});
 });
+
+//
+// MISC. FUNCTIONS
+// ---------------
+function showLightbox(image) {
+	$('#lightbox img').attr('src', image);
+	$('#lightbox-backdrop').slideDown(200);
+	$('#lightbox').slideDown(200);
+}
+
+function hideLightbox() {
+	$('#lightbox-backdrop').slideUp(200);
+	$('#lightbox').slideUp(200);
+}
