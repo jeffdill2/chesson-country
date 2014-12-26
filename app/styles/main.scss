@@ -215,6 +215,10 @@ input {
 }
 
 .product-container {
+  & .products-box {
+    min-height: 120px;
+  }
+
   & .products-name {
     text-align: center;
   }
