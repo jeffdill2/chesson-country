@@ -12,26 +12,26 @@
   |      TEMPLATES
   - - - - - - - --><!-- PRODUCTS DROPDOWN --><script type=text/template id=products-dropdown-view-template><a href="#" class="dropdown-toggle" data-toggle="dropdown">PRODUCTS<span class="caret"></span></a>
 
-    <ul id="products-dropdown" class="dropdown-menu" role="menu">
-      <li><a href="/#products">View All Products...</a></li>
+    <ul class="dropdown-menu" role="menu">
+      <li><a class="product-dropdown-link" href="/#products">View All Products...</a></li>
       <li class="divider"></li>
 
       <% products.forEach(function(product) { %>
-        <li><a href="/#products/<%= product.id %>"><%= product.attributes.name %></a></li>
+        <li><a class="product-dropdown-link" href="/#products/<%= product.id %>"><%= product.attributes.name %></a></li>
       <% }); %>
 
-      <li><a href="/#products">...and more!</a></li>
+      <li><a class="product-dropdown-link" href="/#products">...and more!</a></li>
     </ul></script><!-- ITEMS DROPDOWN --><script type=text/template id=items-dropdown-view-template><a href="#" class="dropdown-toggle" data-toggle="dropdown">ITEMS<span class="caret"></span></a>
 
     <ul class="dropdown-menu" role="menu">
-      <li><a href="/#items">View All Items...</a></li>
+      <li><a class="item-dropdown-link" href="/#items">View All Items...</a></li>
       <li class="divider"></li>
 
       <% items.forEach(function(item) { %>
-        <li><a href="/#items/<%= item.id %>"><%= item.attributes.name %></a></li>
+        <li><a class="item-dropdown-link" href="/#items/<%= item.id %>"><%= item.attributes.name %></a></li>
       <% }); %>
 
-      <li><a href="/#items">...and more!</a></li>
+      <li><a class="item-dropdown-link" href="/#items">...and more!</a></li>
     </ul></script><!-- HOME VIEW --><script type=text/template id=home-view-template><div class="container">
       <div class="jumbotron">
         <h1>Welcome!</h1>
@@ -67,7 +67,7 @@
             <% for (var j = i; j < (i + 3); j++) { %>
               <% if (j < items.length) { %>
                 <div class="col-md-4">
-                  <a href="/#items/<%= items[j].id %>">
+                  <a class="featured-item-link" href="/#items/<%= items[j].id %>">
                     <div class="featured-item">
                       <div class="feature-name">
                         <h3><%= items[j].attributes.name %></h3>
@@ -370,7 +370,7 @@
     </div></script><!-- PRODUCTS VIEW --><script type=text/template id=products-view-template><div class="container">
       <div class="row">
         <% products.forEach(function(product) { %>
-          <a href="/#products/<%= product.id %>">
+          <a class="item-link" href="/#products/<%= product.id %>">
             <div class="product-container">
               <div class="products-box col-md-4">
                 <div class="products-name">
@@ -396,7 +396,7 @@
             <% for (var j = i; j < (i + 3); j++) { %>
               <% if (j < items.length) { %>
                 <div class="col-md-4">
-                  <a href="/#items/<%= items[j].id %>">
+                  <a class="item-link" href="/#items/<%= items[j].id %>">
                     <div class="featured-item">
                       <div class="feature-name">
                         <h3><%= items[j].attributes.name %></h3>
@@ -433,7 +433,7 @@
             <% for (var j = i; j < (i + 3); j++) { %>
               <% if (j < items.length) { %>
                 <div class="col-md-4">
-                  <a href="/#items/<%= items[j].id %>">
+                  <a class="item-link" href="/#items/<%= items[j].id %>">
                     <div class="featured-item">
                       <div class="feature-name">
                         <h3><%= items[j].attributes.name %></h3>
@@ -497,11 +497,11 @@
             <div class="alert alert-info">
               <h5>Like what youre seeing? Share with these links!</h5>
 
-              <div class="social-links">
-                <a target="_blank" href="<%= pinterestLink %>"><i class="fa fa-pinterest-square fa-3x"></i></a>
-                <a target="_blank" href="<%= facebookLink %>"><i class="fa fa-facebook-square fa-3x"></i></a>
-                <a target="_blank" href="<%= twitterLink %>"><i class="fa fa-twitter-square fa-3x"></i></a>
-                <a target="_blank" href="<%= googlePlusLink %>"><i class="fa fa-google-plus-square fa-3x"></i></a>
+              <div id="social-links">
+                <a data-social-type="Pinterest" target="_blank" href="<%= pinterestLink %>"><i class="fa fa-pinterest-square fa-3x"></i></a>
+                <a data-social-type="Facebook" target="_blank" href="<%= facebookLink %>"><i class="fa fa-facebook-square fa-3x"></i></a>
+                <a data-social-type="Twitter" target="_blank" href="<%= twitterLink %>"><i class="fa fa-twitter-square fa-3x"></i></a>
+                <a data-social-type="Google Plus" target="_blank" href="<%= googlePlusLink %>"><i class="fa fa-google-plus-square fa-3x"></i></a>
               </div>
             </div>
 
@@ -535,9 +535,8 @@
       </div>
     </div></script><!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - --><script src=scripts/vendor.js></script><script src=//www.parsecdn.com/js/parse-1.3.1.min.js></script><!-- - - - - - - -
   | GOOGLE ANALYTICS
-  - - - - - - - - --><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-    e.src='//www.google-analytics.com/analytics.js';
-    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-    ga('create','UA-XXXXX-X');ga('send','pageview');</script><script src=scripts/plugins.js></script><script src=scripts/main.js></script>
+  - - - - - - - - --><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-46472596-3', 'auto');ga('send', 'pageview');</script><script src=scripts/plugins.js></script><script src=scripts/main.js></script>
