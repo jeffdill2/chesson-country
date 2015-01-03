@@ -91,14 +91,14 @@
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">PRODUCTS<span class="caret"></span></a>
 
     <ul class="dropdown-menu" role="menu">
-      <li><a href="/#products">View All Products...</a></li>
+      <li><a class="product-dropdown-link" href="/#products">View All Products...</a></li>
       <li class="divider"></li>
 
       <% products.forEach(function(product) { %>
-        <li><a href="/#products/<%= product.id %>"><%= product.attributes.name %></a></li>
+        <li><a class="product-dropdown-link" href="/#products/<%= product.id %>"><%= product.attributes.name %></a></li>
       <% }); %>
 
-      <li><a href="/#products">...and more!</a></li>
+      <li><a class="product-dropdown-link" href="/#products">...and more!</a></li>
     </ul>
   </script>
 
@@ -107,14 +107,14 @@
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">ITEMS<span class="caret"></span></a>
 
     <ul class="dropdown-menu" role="menu">
-      <li><a href="/#items">View All Items...</a></li>
+      <li><a class="item-dropdown-link" href="/#items">View All Items...</a></li>
       <li class="divider"></li>
 
       <% items.forEach(function(item) { %>
-        <li><a href="/#items/<%= item.id %>"><%= item.attributes.name %></a></li>
+        <li><a class="item-dropdown-link" href="/#items/<%= item.id %>"><%= item.attributes.name %></a></li>
       <% }); %>
 
-      <li><a href="/#items">...and more!</a></li>
+      <li><a class="item-dropdown-link" href="/#items">...and more!</a></li>
     </ul>
   </script>
 
@@ -155,7 +155,7 @@
             <% for (var j = i; j < (i + 3); j++) { %>
               <% if (j < items.length) { %>
                 <div class="col-md-4">
-                  <a href="/#items/<%= items[j].id %>">
+                  <a class="featured-item-link" href="/#items/<%= items[j].id %>">
                     <div class="featured-item">
                       <div class="feature-name">
                         <h3><%= items[j].attributes.name %></h3>
@@ -478,7 +478,7 @@
     <div class="container">
       <div class="row">
         <% products.forEach(function(product) { %>
-          <a href="/#products/<%= product.id %>">
+          <a class="item-link" href="/#products/<%= product.id %>">
             <div class="product-container">
               <div class="products-box col-md-4">
                 <div class="products-name">
@@ -509,7 +509,7 @@
             <% for (var j = i; j < (i + 3); j++) { %>
               <% if (j < items.length) { %>
                 <div class="col-md-4">
-                  <a href="/#items/<%= items[j].id %>">
+                  <a class="item-link" href="/#items/<%= items[j].id %>">
                     <div class="featured-item">
                       <div class="feature-name">
                         <h3><%= items[j].attributes.name %></h3>
@@ -551,7 +551,7 @@
             <% for (var j = i; j < (i + 3); j++) { %>
               <% if (j < items.length) { %>
                 <div class="col-md-4">
-                  <a href="/#items/<%= items[j].id %>">
+                  <a class="item-link" href="/#items/<%= items[j].id %>">
                     <div class="featured-item">
                       <div class="feature-name">
                         <h3><%= items[j].attributes.name %></h3>
@@ -620,11 +620,11 @@
             <div class="alert alert-info">
               <h5>Like what youre seeing? Share with these links!</h5>
 
-              <div class="social-links">
-                <a target="_blank" href="<%= pinterestLink %>"><i class="fa fa-pinterest-square fa-3x"></i></a>
-                <a target="_blank" href="<%= facebookLink %>"><i class="fa fa-facebook-square fa-3x"></i></a>
-                <a target="_blank" href="<%= twitterLink %>"><i class="fa fa-twitter-square fa-3x"></i></a>
-                <a target="_blank" href="<%= googlePlusLink %>"><i class="fa fa-google-plus-square fa-3x"></i></a>
+              <div id="social-links">
+                <a data-social-type="Pinterest" target="_blank" href="<%= pinterestLink %>"><i class="fa fa-pinterest-square fa-3x"></i></a>
+                <a data-social-type="Facebook" target="_blank" href="<%= facebookLink %>"><i class="fa fa-facebook-square fa-3x"></i></a>
+                <a data-social-type="Twitter" target="_blank" href="<%= twitterLink %>"><i class="fa fa-twitter-square fa-3x"></i></a>
+                <a data-social-type="Google Plus" target="_blank" href="<%= googlePlusLink %>"><i class="fa fa-google-plus-square fa-3x"></i></a>
               </div>
             </div>
 

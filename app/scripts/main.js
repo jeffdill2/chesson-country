@@ -105,3 +105,78 @@ function hideLightbox() {
 	$('#lightbox-backdrop').slideUp(200);
 	$('#lightbox').slideUp(200);
 }
+
+//
+// GOOGLE ANALYTICS
+// ----------------
+$(document).on('click', '#featured-items-link', function() {
+	ga('send', {
+    hitType:       'event',
+    eventCategory: 'Navbar',
+    eventAction:   'click',
+    eventLabel:    'Featured'
+  });
+});
+
+$(document).on('click', '.product-dropdown-link', function() {
+	ga('send', {
+    hitType:       'event',
+    eventCategory: 'Navbar',
+    eventAction:   'click',
+    eventLabel:    'Products'
+  });
+});
+
+$(document).on('click', '.item-dropdown-link', function() {
+	ga('send', {
+    hitType:       'event',
+    eventCategory: 'Navbar',
+    eventAction:   'click',
+    eventLabel:    'Items'
+  });
+});
+
+$(document).on('click', '.featured-item-link', function() {
+	ga('send', {
+    hitType:       'event',
+    eventCategory: 'Item',
+    eventAction:   'click',
+    eventLabel:    'Featured'
+  });
+});
+
+$(document).on('click', '.item-link', function() {
+	ga('send', {
+    hitType:       'event',
+    eventCategory: 'Item',
+    eventAction:   'click',
+    eventLabel:    'Normal'
+  });
+});
+
+$(document).on('click', '#social-links a', function() {
+	ga('send', {
+    hitType:       'event',
+    eventCategory: 'Social',
+    eventAction:   'click',
+    eventLabel:    this.dataset.socialType
+  });
+});
+
+$(document).on('click', '#purchase-item', function() {
+	ga('send', {
+    hitType:       'event',
+    eventCategory: 'Email',
+    eventAction:   'click',
+    eventLabel:    'Purchase'
+  });
+});
+
+$(document).on('click', '#request-more-info', function() {
+	ga('send', {
+    hitType:       'event',
+    eventCategory: 'Email',
+    eventAction:   'click',
+    eventLabel:    'Info'
+  });
+});
