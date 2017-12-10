@@ -3,7 +3,8 @@
 //
 // INITIALIZE PARSE
 // ----------------
-Parse.initialize('Jhy8OKg078ZS0kqcovgTUTOWGVR24uLBaAbgVWr1','5YB6DJc5NNwAbp73polr1FpMRmO37VDdgaJDgGWt');
+Parse.initialize('rGQfoeFQ7dAwWECkxByzXycC','6jzuzBhTuZUbinpvpmJGXQUb');
+Parse.serverURL = 'https://chesson-country-api.herokuapp.com';
 
 //
 // INITIALIZE ROUTER
